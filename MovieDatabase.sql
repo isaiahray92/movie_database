@@ -238,7 +238,7 @@ INSERT INTO GENRE (genre_name) VALUES ('Sci-Fi');
 INSERT INTO GENRE (genre_name) VALUES ('Silent');
 
 INSERT INTO PRODUCTION_CO (pc_id, name, owner, country_orgin) VALUES (1, 'Dreamworks', 'Walt Disney', 'Japan');
-INSERT INTO PRODUCTION_CO (pc_id, name, owner, country_orgin) VALUES (2 'Sony', 'Dolby', 'United States');
+INSERT INTO PRODUCTION_CO (pc_id, name, owner, country_orgin) VALUES (2, 'Sony', 'Dolby', 'United States');
 
 INSERT INTO LANGUAGES (language_name) VALUES ('Thai');
 INSERT INTO LANGUAGES (language_name) VALUES ('Spanish');
@@ -251,3 +251,33 @@ INSERT INTO REVIEWER (reviewer_id, type) VALUES (2, 'User');
 
 INSERT INTO MOVIE (movie_id, name, release_date, run_time, production_CO) VALUES (1, 'Sound of Music', '2017-03-22', 201, 1);
 INSERT INTO MOVIE (movie_id, name, release_date, run_time, production_CO) VALUES (2, 'Mulan', '2019-09-02', 120, 2);
+
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '12:30:25', 1);
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (2, '16:45:00', 2);
+
+INSERT INTO REVIEWS_MADE (reviewer_id, review_id, movie_id) VALUES (1, 1, 1);
+INSERT INTO REVIEWS_MADE (reviewer_id, review_id, movie_id) VALUES (2, 2, 2);
+
+INSERT INTO REVIEW (reviewer_id, review_id, description, rating) VALUES (1, 1, 'Good movie', 5);
+INSERT INTO REVIEW (reviewer_id, review_id, description, rating) VALUES (2, 2, 'Terrible', 2);
+
+INSERT INTO MOVIE_REVIEWS (movie_id, review_id) VALUES (1, 1);
+INSERT INTO MOVIE_REVIEWS (movie_id, review_id) VALUES (2, 2);
+
+INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 1);
+INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (2, 2);
+
+INSERT INTO MOVIE_GENRE (movie_id, genre_name) VALUES (1, 'Sci-Fi');
+INSERT INTO MOVIE_GENRE (movie_id, genre_name) VALUES (2, 'Silent');
+
+INSERT INTO MOVIE_DIRECTORS (movie_id, director_id) VALUES (1, 1);
+INSERT INTO MOVIE_DIRECTORS (movie_id, director_id) VALUES (2, 2);
+
+INSERT INTO LANGUAGES_AVAIL (movie_id, language_name, subtitiles_avail) VALUES (1, 'Thai', 'T');
+INSERT INTO LANGUAGES_AVAIL (movie_id, language_name, subtitiles_avail) VALUES (2, 'Spanish', 'F');
+
+INSERT INTO TICKET (movie_date, start_time, fname, lname, seat_num, row_num, movie, theater, ticket_num) VALUES ('2017-03-22', '12:30:25', 'Isaiah', 'Herrera', 1, 1, 1, 1, 1);
+INSERT INTO TICKET (movie_date, start_time, fname, lname, seat_num, row_num, movie, theater, ticket_num) VALUES ('2019-09-02', '16:45:00', 'John', 'Doe', 2, 2, 2, 2);
+
+INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 1);
+INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (2, 2);
