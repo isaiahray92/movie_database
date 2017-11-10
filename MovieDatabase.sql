@@ -217,3 +217,37 @@ CREATE TABLE TICKET_SALES
   FOREIGN KEY(pool_id) REFERENCES TICKET_POOL(pool_id),
   FOREIGN KEY(ticket_num) REFERENCES TICKET(ticket_num)
 );
+
+
+INSERT INTO SEAT (seat_num, row_num) VALUES (1,1);
+INSERT INTO SEAT (seat_num, row_num) VALUES (1,2);
+
+INSERT INTO THEATER_ROOM (theater_num, num_of_seats) VALUES (1, 10);
+INSERT INTO THEATER_ROOM (theater_num, num_of_seats) VALUES (2, 100);
+
+INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('Isaiah', 'Herrera', 1);
+INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('John', 'Doe', 2);
+
+INSERT INTO ACTOR (act_id, fname, lname, bio) VALUES (1, 'Chris', 'Pratt', 'His bio.');
+INSERT INTO ACTOR (act_id, fname, lname, bio) VALUES (2, 'Chris', 'Hemsworth', 'Also his bio.');
+
+INSERT INTO DIRECTOR (director_id, fname, lname, bio) VALUES (1, 'Chris', 'Matt', 'His bio.');
+INSERT INTO DIRECTOR (director_id, fname, lname, bio) VALUES (2, 'James', 'Cameron', 'His bio v2.');
+
+INSERT INTO GENRE (genre_name) VALUES ('Sci-Fi');
+INSERT INTO GENRE (genre_name) VALUES ('Silent');
+
+INSERT INTO PRODUCTION_CO (pc_id, name, owner, country_orgin) VALUES (1, 'Dreamworks', 'Walt Disney', 'Japan');
+INSERT INTO PRODUCTION_CO (pc_id, name, owner, country_orgin) VALUES (2 'Sony', 'Dolby', 'United States');
+
+INSERT INTO LANGUAGES (language_name) VALUES ('Thai');
+INSERT INTO LANGUAGES (language_name) VALUES ('Spanish');
+
+INSERT INTO TICKET_POOL (pool_id, num_of_sold, num_avail) VALUES (1, 1, 10);
+INSERT INTO TICKET_POOL (pool_id, num_of_sold, num_avail) VALUES (2, 1, 100);
+
+INSERT INTO REVIEWER (reviewer_id, type) VALUES (1, 'Critic');
+INSERT INTO REVIEWER (reviewer_id, type) VALUES (2, 'User');
+
+INSERT INTO MOVIE (movie_id, name, release_date, run_time, production_CO) VALUES (1, 'Sound of Music', '2017-03-22', 201, 1);
+INSERT INTO MOVIE (movie_id, name, release_date, run_time, production_CO) VALUES (2, 'Mulan', '2019-09-02', 120, 2);
