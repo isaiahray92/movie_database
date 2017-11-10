@@ -26,7 +26,7 @@ CREATE TABLE ACTOR
 (
   act_id INT NOT NULL UNIQUE,
   fname VARCHAR(15),
-  flname VARCHAR(15),
+  lname VARCHAR(15),
   bio VARCHAR(15),
   PRIMARY KEY(act_id)
 );
@@ -220,7 +220,7 @@ CREATE TABLE TICKET_SALES
 
 
 INSERT INTO SEAT (seat_num, row_num) VALUES (1,1);
-INSERT INTO SEAT (seat_num, row_num) VALUES (1,2);
+INSERT INTO SEAT (seat_num, row_num) VALUES (2,2);
 
 INSERT INTO THEATER_ROOM (theater_num, num_of_seats) VALUES (1, 10);
 INSERT INTO THEATER_ROOM (theater_num, num_of_seats) VALUES (2, 100);
@@ -277,7 +277,7 @@ INSERT INTO LANGUAGES_AVAIL (movie_id, language_name, subtitiles_avail) VALUES (
 INSERT INTO LANGUAGES_AVAIL (movie_id, language_name, subtitiles_avail) VALUES (2, 'Spanish', 'F');
 
 INSERT INTO TICKET (movie_date, start_time, fname, lname, seat_num, row_num, movie, theater, ticket_num) VALUES ('2017-03-22', '12:30:25', 'Isaiah', 'Herrera', 1, 1, 1, 1, 1);
-INSERT INTO TICKET (movie_date, start_time, fname, lname, seat_num, row_num, movie, theater, ticket_num) VALUES ('2019-09-02', '16:45:00', 'John', 'Doe', 2, 2, 2, 2);
+INSERT INTO TICKET (movie_date, start_time, fname, lname, seat_num, row_num, movie, theater, ticket_num) VALUES ('2019-09-02', '16:45:00', 'John', 'Doe', 2, 2, 2, 2, 2);
 
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 1);
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (2, 2);
