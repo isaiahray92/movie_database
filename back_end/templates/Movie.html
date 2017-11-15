@@ -17,7 +17,7 @@
       $('#btnSignIn').click(function(evt){
         evt.preventDefault();
         $.get('http://localhost:3000/request', function(movies) {
-                $('#response').html(movies); // show the list
+                $('p').append(JSON.stringify(movies)); // show the list
             });
       });
     });

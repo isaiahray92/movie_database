@@ -1,4 +1,4 @@
-var express = require('express'), movies = require('./moviequery.js').Request;
+var express = require('express')//, movies = require('./moviequery.js').Request;
 var app = express();
 var mysql = require('mysql');
 
@@ -18,6 +18,25 @@ app.get('/',function(req,res){
 // 2nd Give permisions to the user
 // 3rd enter the host and username and database
 app.get('/request', function(req, res){
-res.send(movies.getList())
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "isaiah",
+  password: "PASSword",
+  database : 'md',
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  con.query("SELECT name FROM movie", function (err, result) {
+    if (err){
+    	throw err;
+    }
+    else {
+    	console.log(result);
+    	res.send(result) //How to transfer this to app.js without it resulting in unidentified
+	}
+  });
+  con.end();
+});
 });
 
