@@ -1,0 +1,27 @@
+{
+  "name": "movie_database",
+  "version": "1.0.0",
+  "description": "Movie Database for Databases",
+  "main": "node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaiahray92/movie_database.git"
+  },
+  "keywords": [
+    "movie"
+  ],
+  "author": "Cole Polychronis, Mathew Gerber, Jasmine Boonyakiti, Isaiah Herrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isaiahray92/movie_database/issues"
+  },
+  "homepage": "https://github.com/isaiahray92/movie_database#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0"
+  }
+}
