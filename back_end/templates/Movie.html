@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, inital-scale=1">
+	<title>Recent Movies</title>
+	
+	
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<link href="../style/cover.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    $(function(){
+      $('#btnSignIn').click(function(evt){
+        evt.preventDefault();
+        $.get('http://localhost:3000/request', function(movies) {
+                $('#response').html(movies); // show the list
+            });
+      });
+    });
+     
+  </script>
+</head>
+<body>
+	<div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+
+            	<div class="topnav" id="myTopnav">
+					       <!--<a href="#home">
+					         <img src="http://localhost:3000/freshpotatoes.png" width="80" height="80" alt="Chec">
+
+					       </a> -->
+					       <h3 class="masthead-brand">Fresh Potatoes</h3>
+				      </div> 
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h2 class="cover-heading">Find Recent Movies</h2>
+            
+            <p class="lead">
+              <!--<img src="http://localhost:3000/freshpotatoes.png">-->
+              <a button id="btnSignIn" class="btn btn-lg btn-default">Find Movies</a> 
+            </p>
+          
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Fresh potatoes
+          
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+	
+</body>
+</html>

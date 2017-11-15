@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require('express'), movies = require('./moviequery.js').Request;
 var app = express();
 var mysql = require('mysql');
 
@@ -11,21 +11,13 @@ app.use('/node_modules',  express.static(__dirname + '/node_modules'));
 
 app.use('/style',  express.static(__dirname + '/style'));
 app.get('/',function(req,res){
-    res.sendFile('home.html',{'root': __dirname + '/templates'});
+    res.sendFile('Movie.html',{'root': __dirname + '/templates'});
 })
 
 // 1st Create user in database
 // 2nd Give permisions to the user
 // 3rd enter the host and username and database
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "isaiah",
-  password: "PASSword",
-  database : 'md',
+app.get('/request', function(req, res){
+res.send(movies.getList())
 });
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
