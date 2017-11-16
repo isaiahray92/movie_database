@@ -17,7 +17,9 @@
       $('#btnSignIn').click(function(evt){
         evt.preventDefault();
         $.get('http://localhost:3000/request', function(movies) {
-                $('p').append(JSON.stringify(movies)); // show the list
+                $( ".lead2" ).empty();
+                $(".lead2").append(JSON.stringify(movies)); // show the list
+
             });
       });
     });
@@ -50,6 +52,8 @@
             <p class="lead">
               <!--<img src="http://localhost:3000/freshpotatoes.png">-->
               <a button id="btnSignIn" class="btn btn-lg btn-default">Find Movies</a> 
+            </p>
+            <p class="lead2">
             </p>
           
           </div>
