@@ -27,7 +27,7 @@ var con = mysql.createConnection({
 
 con.connect(function(err) {
   if (err) throw err;
-  con.query("SELECT name FROM movie", function (err, result) {
+  con.query("SELECT name FROM MOVIE", function (err, result) {
     if (err){
     	throw err;
     }
