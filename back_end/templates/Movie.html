@@ -13,22 +13,11 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
   <script type="text/javascript">
-		arr = [];
     $(function(){
-			$('#searchBt').click(function(evt){
-				evt.preventDefault();
-				// arr.push(mySearch.value);
-				$(".lead2").append(mySearch.value);
-			});
-
-      $('#btnSignIn').click(function(evt){
+      $('#searchBt').click(function(evt){
         evt.preventDefault();
-        $.get('http://localhost:3000/requestMovies', function(movies) {
-                $( ".lead2" ).empty();
-                $(".lead2").append("<tr> <th> Name </th> </tr>")
-                for (i = 0; i < movies.length; i++){
-                  $(".lead2").append("<tr> <th>"+movies[i]['name']+"</th> </tr>");
-                }
+        $.get('http://localhost:3000/generalRequest', "Work Please", function(data) {
+                $("p").append(JSON.stringify(data));
                 //$(".lead2").append(JSON.stringify(movies)); // show the list
 
             });

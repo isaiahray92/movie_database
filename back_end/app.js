@@ -5,6 +5,7 @@ var router = express.Router();
 var path = __dirname + "/templates";
 var mysql = require("mysql");
 
+
 router.use(function(req,res,next){
   console.log("/" + req.method);
   next();
@@ -29,7 +30,7 @@ app.listen(3000,function(){
     console.log('Node server running @ http://localhost:3000')
 });
 
-router.get('/request', function(req, res){
+/*router.get('/request', function(req, res){
   var con = mysql.createConnection({
     host: "localhost",
     user: "isaiah",
@@ -50,8 +51,11 @@ con.connect(function(err) {
 	   }
   });
   con.end();
-
-  app.post('/generalRequest', function(req, res){
+});
+});*/
+  
+  router.get('/generalRequest', function(req, res){
+  console.log("here");
   var con = mysql.createConnection({
     host: "localhost",
     user: "isaiah",
@@ -61,13 +65,14 @@ con.connect(function(err) {
 
   con.connect(function(err) {
     if (err) throw err;
+    console.log(JSON.stringify(req.body));
     con.query("SELECT * ( PROJECT " + req.body.name + " FROM " +  req.body.type + ' )',  function (err, result) {
       if (err){
       	throw err;
       }
       else {
       	console.log(result);
-      	res.send(result) //How to transfer this to app.js without it resulting in unidentified
+      	res.send(result); //How to transfer this to app.js without it resulting in unidentified
   	}
     });
     con.end();
