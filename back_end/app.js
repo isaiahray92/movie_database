@@ -37,6 +37,26 @@ con.connect(function(err) {
 	}
   });
   con.end();
-});
-});
 
+  app.post('/generalRequest', function(req, res){
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "isaiah",
+    password: "PASSword",
+    database : 'md',
+  });
+
+  con.connect(function(err) {
+    if (err) throw err;
+    con.query("SELECT * ( PROJECT " + req.body.name + " FROM " +  req.body.type + ' )',  function (err, result) {
+      if (err){
+      	throw err;
+      }
+      else {
+      	console.log(result);
+      	res.send(result) //How to transfer this to app.js without it resulting in unidentified
+  	}
+    });
+    con.end();
+});
+});
