@@ -16,7 +16,7 @@
     $(function(){
       $('#searchBt').click(function(evt){
         evt.preventDefault();
-        $.get('http://localhost:3000/generalRequest', "Work Please", function(data) {
+        $.get('http://localhost:3000/generalRequest', { name : $("#mySearch").val(), type : $("#typeSelector").val()}, contentType = 'application/json', function(data) {
                 $("p").append(JSON.stringify(data));
                 //$(".lead2").append(JSON.stringify(movies)); // show the list
 
@@ -36,9 +36,7 @@
           <div class="masthead clearfix">
 
             <div class="inner">
-
 							<nav class="navbar navbar-inverse">
-								<a href="#" class="navbar-left"><img src="/freshpotatoes" width="100" height="100"></a>
 							<div class="container-fluid">
 								<div class="navbar-header">
 									<a class="navbar-brand" href="/">Home</a>
@@ -53,6 +51,10 @@
 						</nav>
             	<div class="topnav" id="myTopnav">
 								<h1 class="masthead-brand">Fresh Potatoes</h1>
+					       <!--<a href="#home">
+					         <img src="http://localhost:3000/freshpotatoes.png" width="80" height="80" alt="Chec">
+
+					       </a> -->
 
 				      </div>
             </div>
