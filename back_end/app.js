@@ -17,7 +17,7 @@ app.get('/',function(req,res){
 // 1st Create user in database
 // 2nd Give permisions to the user
 // 3rd enter the host and username and database
-app.get('/request', function(req, res){
+app.get('/requestMovies', function(req, res){
 var con = mysql.createConnection({
   host: "localhost",
   user: "isaiah",
