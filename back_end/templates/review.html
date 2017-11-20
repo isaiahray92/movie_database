@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<title>Recent Movies</title>
+
+
+  <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="../style/cover.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  <!-- <script type="text/javascript">
+		arr = [];
+    $(function(){
+			$('#searchBt').click(function(evt){
+				evt.preventDefault();
+				// arr.push(mySearch.value);
+				$(".lead2").append(mySearch.value);
+			});
+
+      $('#btnSignIn').click(function(evt){
+        evt.preventDefault();
+        $.get('http://localhost:3000/request', function(movies) {
+                $( ".lead2" ).empty();
+                $(".lead2").append(JSON.stringify(movies)); // show the list
+
+            });
+      });
+    });
+
+  </script> -->
+</head>
+<body>
+	<div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <nav class="navbar navbar-inverse">
+							 <div class="container-fluid">
+								 <div class="navbar-header">
+									 <a class="navbar-brand" href="/review">Leave a Review</a>
+								 </div>
+								 <ul class="nav navbar-nav">
+									 <!-- <li class="active"><a href="/">Home</a></li> -->
+									 <li><a href="/">Home</a></li>
+									 <li><a href="/ticket">Buy a Ticket</a></li>
+									 <!-- <li><a href="#">Page 3</a></li> -->
+								 </ul>
+							 </div>
+						 </nav>
+
+            	<div class="topnav" id="myTopnav">
+					       <!--<a href="#home">
+					         <img src="http://localhost:3000/freshpotatoes.png" width="80" height="80" alt="Chec">
+
+					       </a> -->
+					       <h1 class="masthead-brand">Fresh Potatoes</h1>
+				      </div>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <form>
+              <div class="form-group">
+                <label>Your Review</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Write your review here..." required>
+              </div>
+
+              <div class="input-append">
+ 							 <select class="form-control">
+ 							  <option value="opt1">Thor: Ragnarok</option>
+ 							   <option value="opt2">Daddy's Home 2</option>
+ 							</select>
+ 						 </div>
+
+              <div class="radio-inline">
+                <label class="radio-inline"><input type="radio" name="optradio" required>1</label>
+              <!-- </div>
+              <div class="radio-inline"> -->
+                <label class="radio-inline"><input type="radio" name="optradio" required>2</label>
+              <!-- </div>
+              <div class="radio-inline"> -->
+                <label class="radio-inline"><input type="radio" name="optradio" required>3</label>
+              <!-- </div>
+              <div class="radio-inline"> -->
+                <label class="radio-inline"><input type="radio" name="optradio" required>4</label>
+              <!-- </div>
+              <div class="radio-inline"> -->
+                <label class="radio-inline"><input type="radio" name="optradio" required>5</label>
+              </div>
+
+              <div>
+ 							        <button id="searchBt" class="btn btn-lg btn-default">Submit Review</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Fresh potatoes
+
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+</body>
+</html>
