@@ -19,6 +19,12 @@ router.get("/review", function(req,res){
 router.get("/ticket", function(req,res){
   res.sendFile(path + "/ticket.html");
 });
+router.get("/movieticket", function(req,res){
+  res.sendFile(path + "/movieticket.html");
+});
+router.get("/freshpotatoes", function(req,res){
+  res.sendFile(path + "/freshpotatoes.png");
+});
 
 app.use("/", router);
 app.use('/node_modules',  express.static(__dirname + '/node_modules'));

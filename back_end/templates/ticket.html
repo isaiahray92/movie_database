@@ -12,10 +12,10 @@
 	<link href="../style/cover.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
 		arr = [];
     $(function(){
-			$('#searchBt').click(function(evt){
+			$('#subMov').click(function(evt){
 				evt.preventDefault();
 				// arr.push(mySearch.value);
 				$(".lead2").append(mySearch.value);
@@ -26,12 +26,12 @@
         $.get('http://localhost:3000/request', function(movies) {
                 $( ".lead2" ).empty();
                 $(".lead2").append(JSON.stringify(movies)); // show the list
-
             });
       });
     });
 
-  </script> -->
+  </script>
+
 </head>
 <body>
 	<div class="site-wrapper">
@@ -43,6 +43,7 @@
           <div class="masthead clearfix">
             <div class="inner">
               <nav class="navbar navbar-inverse">
+                <a href="#" class="navbar-left"><img src="/freshpotatoes" width="100" height="100"></a>
 							 <div class="container-fluid">
 								 <div class="navbar-header">
 									 <a class="navbar-brand" href="/ticket">Buy a Ticket</a>
@@ -62,6 +63,7 @@
 
 					       </a> -->
 					       <h1 class="masthead-brand">Fresh Potatoes</h1>
+
 				      </div>
             </div>
           </div>
@@ -80,11 +82,23 @@
 				 </form>
 
           <div class="inner cover">
-            <h2 class="cover-heading">Find Recent Movies</h2>
+            <h2 class="cover-heading">What Movie Would You Like to See?</h2>
 
             <p class="lead">
               <!--<img src="http://localhost:3000/freshpotatoes.png">-->
-              <a button id="btnSignIn" class="btn btn-lg btn-default">Find Movies</a>
+              <!-- <a button id="btnSignIn" class="btn btn-lg btn-default">Find Movies</a> -->
+              <!-- <button type="submit" class="btn btn-primary">Submit Changes</button>  -->
+              <form>
+                <div class="input-append">
+   							 <select class="form-control" required>
+   							  <option value="opt1">Thor: Ragnarok</option>
+   							   <option value="opt2">Daddy's Home 2</option>
+   							</select>
+   						 </div>
+             </form>
+              <button type="button" class="btn btn-primary" id="subMov" onclick="window.location.href='/movieticket'"> Submit</button>
+              <!-- onclick="window.location.href='/movieticket'" -->
+
             </p>
             <p class="lead2">
             </p>
