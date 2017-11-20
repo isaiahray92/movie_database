@@ -24,6 +24,7 @@ app.use("/", router);
 app.use('/node_modules',  express.static(__dirname + '/node_modules'));
 app.use('/style',  express.static(__dirname + '/style'));
 
+
 app.listen(3000,function(){
     console.log('Node server running @ http://localhost:3000')
 });
@@ -34,6 +35,7 @@ router.get('/request', function(req, res){
     user: "isaiah",
     password: "PASSword",
     database : 'md',
+
 });
 
 con.connect(function(err) {

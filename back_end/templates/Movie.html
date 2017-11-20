@@ -23,9 +23,13 @@
 
       $('#btnSignIn').click(function(evt){
         evt.preventDefault();
-        $.get('http://localhost:3000/request', function(movies) {
+        $.get('http://localhost:3000/requestMovies', function(movies) {
                 $( ".lead2" ).empty();
-                $(".lead2").append(JSON.stringify(movies)); // show the list
+                $(".lead2").append("<tr> <th> Name </th> </tr>")
+                for (i = 0; i < movies.length; i++){
+                  $(".lead2").append("<tr> <th>"+movies[i]['name']+"</th> </tr>");
+                }
+                //$(".lead2").append(JSON.stringify(movies)); // show the list
 
             });
       });
@@ -84,9 +88,6 @@
 							<button id="searchBt" class="btn btn-lg btn-default">Search</button>
 						 </div>
 					 </form>
-
-
-
           </div>
 
           <div class="mastfoot">
