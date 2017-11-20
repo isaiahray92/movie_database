@@ -3,17 +3,24 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, inital-scale=1">
+	<meta name="viewport" content="width=device-width">
 	<title>Recent Movies</title>
-	
-	
+
+
   <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	
+
 	<link href="../style/cover.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
   <script type="text/javascript">
+		arr = [];
     $(function(){
+			$('#searchBt').click(function(evt){
+				evt.preventDefault();
+				// arr.push(mySearch.value);
+				$(".lead2").append(mySearch.value);
+			});
+
       $('#btnSignIn').click(function(evt){
         evt.preventDefault();
         $.get('http://localhost:3000/request', function(movies) {
@@ -23,7 +30,7 @@
             });
       });
     });
-     
+
   </script>
 </head>
 <body>
@@ -34,34 +41,58 @@
         <div class="cover-container">
 
           <div class="masthead clearfix">
-            <div class="inner">
 
+            <div class="inner">
+							<nav class="navbar navbar-inverse">
+							<div class="container-fluid">
+								<div class="navbar-header">
+									<a class="navbar-brand" href="/">Home</a>
+								</div>
+								<ul class="nav navbar-nav">
+									<!-- <li class="active"><a href="/">Home</a></li> -->
+									<li><a href="/review">Leave a Review</a></li>
+									<li><a href="/ticket">Buy a Ticket</a></li>
+									<!-- <li><a href="#">Page 3</a></li> -->
+								</ul>
+							</div>
+						</nav>
             	<div class="topnav" id="myTopnav">
+								<h1 class="masthead-brand">Fresh Potatoes</h1>
 					       <!--<a href="#home">
 					         <img src="http://localhost:3000/freshpotatoes.png" width="80" height="80" alt="Chec">
 
 					       </a> -->
-					       <h3 class="masthead-brand">Fresh Potatoes</h3>
-				      </div> 
+
+				      </div>
             </div>
           </div>
 
+
           <div class="inner cover">
-            <h2 class="cover-heading">Find Recent Movies</h2>
-            
-            <p class="lead">
-              <!--<img src="http://localhost:3000/freshpotatoes.png">-->
-              <a button id="btnSignIn" class="btn btn-lg btn-default">Find Movies</a> 
-            </p>
-            <p class="lead2">
-            </p>
-          
+            <h3 class="cover-heading">Find Recent Movies</h2>
+
+						<form>
+						 <!--Search Bar with drop down menu-->
+						 <div class="input-append">
+							 <input type="text" id="mySearch" class="form-control" placeholder="Search" required/>
+							 <select class="form-control">
+							  <option value="movie">Movie</option>
+							   <option value="director">Director</option>
+							  <option value="actor">Actor/Actress</option>
+							  <option value="showtimes">Show Times</option> <!--Make its own page-->
+							</select>
+							<button id="searchBt" class="btn btn-lg btn-default">Search</button>
+						 </div>
+					 </form>
+
+
+
           </div>
 
           <div class="mastfoot">
             <div class="inner">
               <p>Fresh potatoes
-          
+
               </p>
             </div>
           </div>
@@ -71,6 +102,6 @@
       </div>
 
     </div>
-	
+
 </body>
 </html>
