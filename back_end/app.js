@@ -71,7 +71,16 @@ con.connect(function(err) {
 
   con.connect(function(err) {
     if (err) throw err;
-    con.query("SELECT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\"",  function (err, result) {
+    var quer
+    if (req.query.type == "movie"){
+      quer = "SELECT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+    }
+    else{
+      var fname = req.query.name.split(" ")[0]
+      var lname = req.query.name.split(" ")[1]
+      quer = "SELECT * FROM "+ req.query.type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
+    }
+    con.query(quer,  function (err, result) {
       if (err){
       	throw err;
       }
