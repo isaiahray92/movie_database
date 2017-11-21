@@ -74,7 +74,13 @@
             <form>
               <div class="form-group">
                 <label>Your Review</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Write your review here..." required>
+            </form>
+            <br>
+              <style type="text/css">
+              textarea.html-text-box {background-color:#ffffff;background-image:url(http://);background-repeat:no-repeat;background-attachment:fixed;border-width:1;border-style:solid;border-color:#cccccc;font-family:Arial;font-size:12pt;color:#000000;}
+              input.html-text-box {background-color:#ffffff;font-family:Arial;font-size:12pt;color:#000000;}
+              </style>
+              <form method="post" action="http://"><textarea name="comments" cols="80" rows="5" class="html-text-box">Please write your review here...</textarea>
               </div>
 
               <div class="input-append">
@@ -94,19 +100,6 @@
                 <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
                 <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
               </div>
-                <!-- <label class="radio-inline"><input type="radio" name="optradio" required>1</label>
-               </div>
-              <div class="radio-inline"> -->
-                <!-- <label class="radio-inline"><input type="radio" name="optradio" required>2</label> -->
-              <!-- </div>
-              <div class="radio-inline"> -->
-                <!-- <label class="radio-inline"><input type="radio" name="optradio" required>3</label> -->
-              <!-- </div>
-              <div class="radio-inline"> -->
-                <!-- <label class="radio-inline"><input type="radio" name="optradio" required>4</label> -->
-              <!-- </div>
-              <div class="radio-inline"> -->
-                <!-- <label class="radio-inline"><input type="radio" name="optradio" required>5</label> -->
 
               <div>
  							        <button id="searchBt" class="btn btn-lg btn-default">Submit Review</button>
