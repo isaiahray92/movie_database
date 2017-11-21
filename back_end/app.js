@@ -61,7 +61,7 @@ con.connect(function(err) {
 });*/
   
   router.get('/generalRequest', function(req, res){
-  console.log("here");
+  console.log(req.query);
   var con = mysql.createConnection({
     host: "localhost",
     user: "isaiah",
@@ -71,8 +71,7 @@ con.connect(function(err) {
 
   con.connect(function(err) {
     if (err) throw err;
-    console.log(JSON.stringify(req.body));
-    con.query("SELECT * ( PROJECT " + req.body.name + " FROM " +  req.body.type + ' )',  function (err, result) {
+    con.query("SELECT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\"",  function (err, result) {
       if (err){
       	throw err;
       }

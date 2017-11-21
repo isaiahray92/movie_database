@@ -16,7 +16,10 @@
     $(function(){
       $('#searchBt').click(function(evt){
         evt.preventDefault();
-        $.get('http://localhost:3000/generalRequest', { name : $("#mySearch").val(), type : $("#typeSelector").val()}, contentType = 'application/json', function(data) {
+        var data = { name : $("#mySearch").val(), type : $("#typeSelector").val()
+        }
+        console.log(data)
+        $.get('http://localhost:3000/generalRequest', data, /*contentType = 'application/x-www-form-urlencoded; charset=UTF-8', dataType = 'json'*/  function(data) {
                 $("p").append(JSON.stringify(data));
                 //$(".lead2").append(JSON.stringify(movies)); // show the list
 
@@ -68,7 +71,7 @@
 						 <!--Search Bar with drop down menu-->
 						 <div class="input-append">
 							 <input type="text" id="mySearch" class="form-control" placeholder="Search" required/>
-							 <select class="form-control">
+							 <select class="form-control" id="typeSelector">
 							  <option value="movie">Movie</option>
 							   <option value="director">Director</option>
 							  <option value="actor">Actor/Actress</option>
