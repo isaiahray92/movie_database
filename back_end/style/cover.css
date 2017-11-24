@@ -215,3 +215,23 @@ body {
     top:2px;
     left:2px;
 }
+
+.table {
+    border-radius: 5px;
+    width: 100%;
+    margin: 0px auto;
+    /*float: none;*/
+}
+
+.scrollable {
+
+    overflow-y: scrolling;
+}
+
+.inner-cover {
+
+}
+.bigDiv {
+  position: relative;
+  top:300px;
+}

@@ -29,7 +29,8 @@
 
   </script>
 </head>
-<body>
+<body >
+
 	<div class="site-wrapper">
 
       <div class="site-wrapper-inner">
@@ -39,11 +40,14 @@
           <div class="masthead clearfix">
 
             <div class="inner">
+
 							<nav class="navbar navbar-inverse">
+								<a href="#" class="navbar-left"><img src="/freshpotatoes" width="100" height="100"></a>
 							<div class="container-fluid">
 								<div class="navbar-header">
 									<a class="navbar-brand" href="/">Home</a>
 								</div>
+
 								<ul class="nav navbar-nav">
 									<!-- <li class="active"><a href="/">Home</a></li> -->
 									<li><a href="/review">Leave a Review</a></li>
@@ -52,18 +56,10 @@
 								</ul>
 							</div>
 						</nav>
-            	<div class="topnav" id="myTopnav">
-								<h1 class="masthead-brand">Fresh Potatoes</h1>
-					       <!--<a href="#home">
-					         <img src="http://localhost:3000/freshpotatoes.png" width="80" height="80" alt="Chec">
-
-					       </a> -->
-
-				      </div>
             </div>
           </div>
 
-
+					<div class="bigDiv">
           <div class="inner cover">
             <h3 class="cover-heading">Find Recent Movies</h2>
 
@@ -80,9 +76,53 @@
 							<button id="searchBt" class="btn btn-lg btn-default">Search</button>
 						 </div>
 					 </form>
+
+					 <!-- Table to put search results in -->
+					 <div class="scrollable">
+						  <table class="table" align= "left">
+						    <thead>
+						      <tr>
+						        <th>Movie</th>
+						        <th>Rating</th>
+						        <th>Description</th>
+										<th>Director</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						      <tr>
+						        <td>Thor: Ragnarok</td>
+						        <td>4.7</td>
+						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+						      </tr>
+									<tr>
+						        <td>Thor: Ragnarok</td>
+						        <td>4.7</td>
+						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+						      </tr>
+									<tr>
+						        <td>Thor: Ragnarok</td>
+						        <td>4.7</td>
+						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+						      </tr>
+									<tr>
+						        <td>Thor: Ragnarok</td>
+						        <td>4.7</td>
+						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+						      </tr>
+						    </tbody>
+						  </table>
+						</div>
           </div>
+					</div>
+
+
 
           <div class="mastfoot">
+
             <div class="inner">
               <p>Fresh potatoes
 
