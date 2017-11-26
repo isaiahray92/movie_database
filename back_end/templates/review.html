@@ -12,26 +12,27 @@
 	<link href="../style/cover.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-  <!-- <script type="text/javascript">
-		arr = [];
+	<script type="text/javascript">
     $(function(){
-			$('#searchBt').click(function(evt){
+      $('#submitBt').click(function(evt){
+				$(".returnMessage").empty();
 				evt.preventDefault();
-				// arr.push(mySearch.value);
-				$(".lead2").append(mySearch.value);
-			});
-
-      $('#btnSignIn').click(function(evt){
-        evt.preventDefault();
-        $.get('http://localhost:3000/request', function(movies) {
-                $( ".lead2" ).empty();
-                $(".lead2").append(JSON.stringify(movies)); // show the list
+				var data = { movie : $("#movieName").val(), rating : $("#stars").val(), review : $("#inputAddress").val()
+				}
+				$.post('http://localhost:3000/postReview', data, function(data, res) {
+                if res == 'Success'{
+                  $(".returnMessage").append("Review Submitted!");
+                }
+                else{
+                  $(".returnMessage").append("Review Failed to Submit");
+                }
 
             });
       });
     });
 
-  </script> -->
+  </script>
+
 </head>
 <body>
 	<div class="site-wrapper">
@@ -69,13 +70,13 @@
               </div>
 
               <div class="input-append">
- 							 <select class="form-control">
+ 							 <select class="form-control" id='movieName'>
  							  <option value="opt1">Thor: Ragnarok</option>
  							   <option value="opt2">Daddy's Home 2</option>
  							</select>
  						 </div>
 
-              <div class="radio-inline">
+              <div class="radio-inline" id='stars'>
                 <label class="radio-inline"><input type="radio" name="optradio" required>1</label>
               <!-- </div>
               <div class="radio-inline"> -->
@@ -92,9 +93,11 @@
               </div>
 
               <div>
- 							        <button id="searchBt" class="btn btn-lg btn-default">Submit Review</button>
+ 							        <button id="submitBt" class="btn btn-lg btn-default">Submit Review</button>
               </div>
             </form>
+						<p id='returnMessage'>
+						</p>
           </div>
 
           <div class="mastfoot">
