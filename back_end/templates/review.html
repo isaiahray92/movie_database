@@ -11,7 +11,7 @@
 
 	<link href="../style/cover.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
     $(function(){
       $('#submitBt').click(function(evt){
@@ -63,7 +63,7 @@
           </div>
 
           <div class="inner-cover">
-            <form>
+            <form role="form" action = '/insert' method = 'POST'>
               <div class="form-group">
                 <label>Your Review</label>
                 <input type="text" class="form-control" id="inputAddress" placeholder="Write your review here..." required>
@@ -101,6 +101,7 @@
           </div>
 
           <div class="mastfoot">
+
             <div class="inner">
               <p>Fresh potatoes
 

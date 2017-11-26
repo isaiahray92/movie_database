@@ -59,9 +59,46 @@ con.connect(function(err) {
   con.end();
 });
 });*/
-  
+
+router.post('/postReview', function(req, res){
+  console.log(req.query);
+  console.log('I made it');
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "isaiah",
+    password: "PASSword",
+    database : 'md',
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  var quer
+  if (req.query.type == "movie"){
+    quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+}
+  else{
+    var fname = req.query.name.split(" ")[0]
+    var lname = req.query.name.split(" ")[1]
+    quer = "SELECT * FROM "+ req.query.type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
+}
+  con.query(quer,  function (err, result) {
+    if (err){
+      throw err;
+  }
+    else {
+      console.log(result);
+      res.send(result); //How to transfer this to app.js without it resulting in unidentified
+}
+});
+con.end();
+
+});
+});
+
+
   router.get('/generalRequest', function(req, res){
   console.log(req.query);
+  console.log('hellos');
   var con = mysql.createConnection({
     host: "localhost",
     user: "isaiah",
@@ -90,5 +127,6 @@ con.connect(function(err) {
   	}
     });
     con.end();
+
 });
 });
