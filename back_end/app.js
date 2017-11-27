@@ -127,7 +127,7 @@ con.end();
       quer2 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT director_id FROM DIRECTOR WHERE FNAME = 'Taika')"
       quer3 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT movie_id FROM ACTOR WHERE act_id = (SELECT act_id FROM ACTOR WHERE FNAME = 'Chris' and LNAME = 'Hemsworth'));"
     }
-    con.query(quer, quer2, function (err, result) {
+    con.query(quer, function (err, result) {
       if (err){
       	throw err;
       }
