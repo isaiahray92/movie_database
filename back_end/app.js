@@ -126,7 +126,6 @@ con.end();
       quer = "SELECT bio FROM "+ type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
       quer2 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT director_id FROM DIRECTOR WHERE FNAME = 'Taika')"
       quer3 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT movie_id FROM ACTOR WHERE act_id = (SELECT act_id FROM ACTOR WHERE FNAME = 'Chris' and LNAME = 'Hemsworth'));"
-      quer = quer2 + quer
     }
     con.query(quer, quer2, function (err, result) {
       if (err){
