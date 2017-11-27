@@ -108,14 +108,23 @@ con.end();
 
   con.connect(function(err) {
     if (err) throw err;
+    console.log(req.query);
     var quer
     if (req.query.type == "movie"){
-      quer = "SELECT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+      var type = req.query.type;
+      type = type.toUpperCase()
+      var name = req.query.name;
+      name = name.toUpperCase();
+      quer = "SELECT * FROM "+ type +" WHERE NAME = \"" + name + "\""
     }
     else{
       var fname = req.query.name.split(" ")[0]
       var lname = req.query.name.split(" ")[1]
-      quer = "SELECT * FROM "+ req.query.type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
+      var type = req.query.type;
+      type = type.toUpperCase()
+      console.log(lname);
+      console.log(fname);
+      quer = "SELECT * FROM "+ type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
     }
     con.query(quer,  function (err, result) {
       if (err){
