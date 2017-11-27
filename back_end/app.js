@@ -119,6 +119,8 @@ con.end();
       quer = "SELECT bio FROM "+ type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
       quer2 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT director_id FROM DIRECTOR WHERE FNAME = 'Taika')"
       quer3 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT movie_id FROM ACTOR WHERE act_id = (SELECT act_id FROM ACTOR WHERE FNAME = 'Chris' and LNAME = 'Hemsworth'));"
+      quer4 = "SELECT avg(rating) FROM REVIEW WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = 'Thor: Ragnarok')"
+      quer5 = "SELECT rating FROM REVIEW WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = 'Thor: Ragnarok')"
     }
     con.query(quer, function (err, result) {
       if (err){
