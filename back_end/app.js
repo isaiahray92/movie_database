@@ -101,16 +101,26 @@ con.end();
 
   con.connect(function(err) {
     if (err) throw err;
+    console.log(req.query);
     var quer
+    var quer2
     if (req.query.type == "movie"){
-      quer = "SELECT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+      var type = req.query.type;
+      type = type.toUpperCase()
+      var name = req.query.name;
+      name = name.toUpperCase();
+      quer = "SELECT * FROM "+ type +" WHERE NAME = \"" + name + "\""
     }
     else{
       var fname = req.query.name.split(" ")[0]
       var lname = req.query.name.split(" ")[1]
-      quer = "SELECT * FROM "+ req.query.type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
+      var type = req.query.type;
+      type = type.toUpperCase()
+      quer = "SELECT bio FROM "+ type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
+      quer2 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT director_id FROM DIRECTOR WHERE FNAME = 'Taika')"
+      quer3 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT movie_id FROM ACTOR WHERE act_id = (SELECT act_id FROM ACTOR WHERE FNAME = 'Chris' and LNAME = 'Hemsworth'));"
     }
-    con.query(quer,  function (err, result) {
+    con.query(quer, function (err, result) {
       if (err){
       	throw err;
       }
