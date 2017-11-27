@@ -10,23 +10,25 @@
   <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	<link href="../style/cover.css" rel="stylesheet">
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
     $(function(){
       $('#submitBt').click(function(evt){
-				$(".returnMessage").empty();
+
 				evt.preventDefault();
-				var data = { movie : $("#movieName").val(), rating : $("#stars").val(), review : $("#inputAddress").val()
-				}
-				$.post('http://localhost:3000/postReview', data, function(data, res) {
-                if res == 'Success'{
-                  $(".returnMessage").append("Review Submitted!");
+				var data = { movie : $("#movieName").find(":selected").val(), rating : $("#stars input[type='radio']:checked").val(), review : $("#inputAddress").val()
+			}
+			console.log(data)
+				$.get('http://localhost:3000/postReview', data, function(res) {
+                if(res == 'Success'){
+                  alert("Review Submitted!");
                 }
                 else{
-                  $(".returnMessage").append("Review Failed to Submit");
+                  alert("Review Failed to Submit");
                 }
-
+								$("#stars input[type='radio']:checked").attr('checked', false);
+								//$(".inputAddress").text("Please write your review here...");
             });
       });
     });
@@ -63,34 +65,32 @@
           </div>
 
           <div class="inner-cover">
-            <form role="form" action = '/insert' method = 'POST'>
-              <div class="form-group">
-                <label>Your Review</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Write your review here..." required>
-              </div>
+						<form id='formThing'>
+								<div class="form-group">
+										<label>Your Review</label>
+									</form>
+									<br>
+									<style type="text/css">
+									textarea.html-text-box {background-color:#ffffff;background-image:url(http://);background-repeat:no-repeat;background-attachment:fixed;border-width:1;border-style:solid;border-color:#cccccc;font-family:Arial;font-size:12pt;color:#000000;}
+									input.html-text-box {background-color:#ffffff;font-family:Arial;font-size:12pt;color:#000000;}
+									</style>
+									<form id='formThing'><textarea name="comments" cols="80" rows="5" class="html-text-box" id="inputAddress">Please write your review here...</textarea>
+
 
               <div class="input-append">
  							 <select class="form-control" id='movieName'>
- 							  <option value="opt1">Thor: Ragnarok</option>
- 							   <option value="opt2">Daddy's Home 2</option>
+ 							  <option value="1">Thor: Ragnarok</option>
+ 							   <option value="2">Daddy's Home 2</option>
  							</select>
  						 </div>
 
-              <div class="radio-inline" id='stars'>
-                <label class="radio-inline"><input type="radio" name="optradio" required>1</label>
-              <!-- </div>
-              <div class="radio-inline"> -->
-                <label class="radio-inline"><input type="radio" name="optradio" required>2</label>
-              <!-- </div>
-              <div class="radio-inline"> -->
-                <label class="radio-inline"><input type="radio" name="optradio" required>3</label>
-              <!-- </div>
-              <div class="radio-inline"> -->
-                <label class="radio-inline"><input type="radio" name="optradio" required>4</label>
-              <!-- </div>
-              <div class="radio-inline"> -->
-                <label class="radio-inline"><input type="radio" name="optradio" required>5</label>
-              </div>
+						 <div class="rating" id="stars">
+ 						 <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+ 					 <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+ 				 <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+ 			 <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+ 		 <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+	 </div>
 
               <div>
  							        <button id="submitBt" class="btn btn-lg btn-default">Submit Review</button>

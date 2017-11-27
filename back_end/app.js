@@ -60,7 +60,8 @@ con.connect(function(err) {
 });
 });*/
 
-router.post('/postReview', function(req, res){
+router.get('/postReview', function(req, res){
+  var test = req.query;
   console.log(req.query);
   console.log('I made it');
   var con = mysql.createConnection({
@@ -72,22 +73,14 @@ router.post('/postReview', function(req, res){
 
 con.connect(function(err) {
   if (err) throw err;
-  var quer
-  if (req.query.type == "movie"){
-    quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
-}
-  else{
-    var fname = req.query.name.split(" ")[0]
-    var lname = req.query.name.split(" ")[1]
-    quer = "SELECT * FROM "+ req.query.type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
-}
-  con.query(quer,  function (err, result) {
+    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+  con.query("INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES ( 2, "+ req.query.movie +", \'"+ req.query.review +"\', "+ req.query.rating +") ",  function (err, result) {
     if (err){
       throw err;
   }
     else {
       console.log(result);
-      res.send(result); //How to transfer this to app.js without it resulting in unidentified
+      res.send("Success"); //How to transfer this to app.js without it resulting in unidentified
 }
 });
 con.end();
@@ -97,7 +90,7 @@ con.end();
 
 
   router.get('/generalRequest', function(req, res){
-  console.log(req.query);
+  console.log(req);
   console.log('hellos');
   var con = mysql.createConnection({
     host: "localhost",
