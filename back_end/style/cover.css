@@ -235,3 +235,17 @@ body {
   position: relative;
   top:20px;
 }
+
+.form-group {
+  color: black;
+}
+
+.label-date{
+  text-align: right;
+    clear: both;
+    float:left;
+    margin-right:-100px;
+}
+.input-append {
+  color: black;
+}
