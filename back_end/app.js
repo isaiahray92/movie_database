@@ -90,8 +90,6 @@ con.end();
 
 
   router.get('/generalRequest', function(req, res){
-  console.log(req);
-  console.log('hellos');
   var con = mysql.createConnection({
     host: "localhost",
     user: "isaiah",
@@ -101,34 +99,41 @@ con.end();
 
   con.connect(function(err) {
     if (err) throw err;
-    console.log(req.query);
-    var quer
-    var quer2
+    var quer = [];
     if (req.query.type == "movie"){
-      var type = req.query.type;
-      type = type.toUpperCase()
-      var name = req.query.name;
-      name = name.toUpperCase();
-      quer = "SELECT * FROM "+ type +" WHERE NAME = \"" + name + "\""
+      quer.push("SELECT * FROM MOVIE WHERE NAME = \"" + req.query.name + "\"");
+      quer.push("SELECT fname, lname FROM ACTOR WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE movie_id = 1));");
+      quer.push("SELECT avg(rating) FROM REVIEW WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = \'" + req.query.name + "\');");
+      quer.push("SELECT fname, lname FROM DIRECTOR WHERE director_id = (SELECT director_id FROM MOVIE_DIRECTORS WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE NAME =\'" + req.query.name + "\'));");
     }
     else{
-      var fname = req.query.name.split(" ")[0]
-      var lname = req.query.name.split(" ")[1]
+      var fname = req.query.name.split(" ")[0];
+      var lname = req.query.name.split(" ")[1];
       var type = req.query.type;
       type = type.toUpperCase()
-      quer = "SELECT bio FROM "+ type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\""
-      quer2 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT director_id FROM DIRECTOR WHERE FNAME = 'Taika')"
-      quer3 = "SELECT name FROM MOVIE WHERE movie_id = (SELECT movie_id FROM ACTOR WHERE act_id = (SELECT act_id FROM ACTOR WHERE FNAME = 'Chris' and LNAME = 'Hemsworth'));"
+      quer.push("SELECT * FROM "+ type +" WHERE FNAME = \"" + fname + "\" AND LNAME = \"" + lname + "\";");
+      if (type == "DIRECTOR"){
+        quer.push("SELECT name FROM MOVIE WHERE movie_id IN (SELECT movie_id FROM MOVIE_DIRECTORS WHERE director_id = (SELECT director_id FROM DIRECTOR WHERE FNAME = \'" + fname + "\' AND LNAME = \'" + lname + "\'));");
+      }
+      else{
+        quer.push("SELECT name FROM MOVIE WHERE movie_id IN (SELECT movie_id FROM MOVIE_ACT WHERE act_id = (SELECT act_id FROM ACTOR WHERE FNAME = \'" + fname + "\' AND LNAME = \'" + lname + "\'));");
+      }
     }
-    con.query(quer, function (err, result) {
+
+    var prev = [];
+    for (i = 0; i < quer.length; i++){
+    con.query(quer[i], function (err, result) {
       if (err){
-      	throw err;
+        throw err;
       }
       else {
-      	console.log(result);
-      	res.send(result); //How to transfer this to app.js without it resulting in unidentified
-  	}
+        prev.push(result);
+        console.log(prev);
+    }
     });
+  }
+  console.log(prev);
+    setTimeout(function(){ res.send(prev); }, 100);
     con.end();
 
 });

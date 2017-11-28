@@ -20,9 +20,42 @@
         }
         console.log(data)
         $.get('http://localhost:3000/generalRequest', data, /*contentType = 'application/x-www-form-urlencoded; charset=UTF-8', dataType = 'json'*/  function(data) {
-                $("p").append(JSON.stringify(data));
+						$("#title1").empty();
+						$(".subtitle").hide();
+						$("#sub1").empty();
+						$("#description").empty();
+						$("#topper").empty();
+						$("#tablebody").empty();
+								if($("#typeSelector").val() == "movie"){
+									console.log(data)
+									$("#title1").append(data[0][0]['name']);
+									$(".subtitle").show();
+									$("#sub1").append(data[0][0]['run_time'] + " minutes <span class=ghost>|</span>" + " Released: "+ data[0][0]['release_date'].substring(0,10) + " <span class=ghost>|</span> Directed By "+ data[3][0]['fname']+ " " + data[3][0]['lname']);
+									$("#description").append(data[2][0]['avg(rating)'] + "/5 Potatoes");
+									$("#topper").append("<th>Actors: </th>");
+									for (i = 0; i < data[1].length; i++){
+										$("#tablebody").append("<tr><td>" + data[1][i]['fname'] + " " + data[1][i]['lname'] + "</tr></td>")
+									}
                 //$(".lead2").append(JSON.stringify(movies)); // show the list
-
+								}
+								else if ($("#typeSelector").val() == "director"){
+									console.log(data[0]);
+									$("#title1").append(data[0][0]['fname'] + " " + data[0][0]['lname']);
+									$("#description").append(data[0][0]['bio']);
+									$("#topper").append("<th>Has Directed:</th>");
+									for (i = 0; i < data[1].length; i++){
+										$("#tablebody").append("<tr><td>" + data[1][i]['name'] + "</tr></td>")
+									}
+								}
+								else{
+									console.log(data[0]);
+									$("#title1").append(data[0][0]['fname'] + " " + data[0][0]['lname']);
+									$("#description").append(data[0][0]['bio']);
+									$("#topper").append("<th>Has Acted In:</th>");
+									for (i = 0; i < data[1].length; i++){
+										$("#tablebody").append("<tr><td>" + data[1][i]['name'] + "</tr></td>")
+									}
+								}
             });
       });
     });
@@ -61,7 +94,7 @@
 
 					<div class="bigDiv">
           <div class="inner cover">
-            <h3 class="cover-heading">Find Recent Movies</h2>
+            <h3 class="cover-heading">Search Potatoes Database</h2>
 
 						<form>
 						 <!--Search Bar with drop down menu-->
@@ -71,7 +104,6 @@
 							  <option value="movie">Movie</option>
 							   <option value="director">Director</option>
 							  <option value="actor">Actor/Actress</option>
-							  <option value="showtimes">Show Times</option> <!--Make its own page-->
 							</select>
 							<button id="searchBt" class="btn btn-lg btn-default">Search</button>
 						 </div>
@@ -79,17 +111,24 @@
 
 					 <!-- Table to put search results in -->
 					 <div class="scrollable">
-						  <table class="table" align= "left">
+						 <div class="title_wrapper">
+							 <h1 id='title1'></h1>
+							 <div class="subtitle" style="display: none;">
+								 <p id="sub1"></p>
+							 </div>
+							 <p id="description"></p>
+						 </div>
+							<table class="table" align= "left" id="table1">
 						    <thead>
-						      <tr>
-						        <th>Movie</th>
+						      <tr id="topper">
+						        <!--<th>Movie</th>
 						        <th>Rating</th>
 						        <th>Description</th>
-										<th>Director</th>
+										<th>Director</th> -->
 						      </tr>
 						    </thead>
-						    <tbody>
-						      <tr>
+						    <tbody id ="tablebody">
+						      <!--<tr>
 						        <td>Thor: Ragnarok</td>
 						        <td>4.7</td>
 						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
@@ -112,7 +151,7 @@
 						        <td>4.7</td>
 						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
 										<td>"Example #1"</td>
-						      </tr>
+						      </tr> -->
 						    </tbody>
 						  </table>
 						</div>
@@ -124,7 +163,7 @@
           <div class="mastfoot">
 
             <div class="inner">
-              <p>Fresh potatoes
+              <p><!--Fresh potatoes-->
 
               </p>
             </div>
