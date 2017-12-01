@@ -172,6 +172,17 @@ CREATE TABLE TICKET_SALES
   FOREIGN KEY(ticket_num) REFERENCES TICKET(ticket_num)
 );
 
+CREATE TABLE MANAGER
+(
+  Manager_Fname VARCHAR(30),
+  Manager_Lname VARCHAR(30),
+  Password VARCHAR(30),
+  PRIMARY KEY(Manager_Fname,Manager_Lname)
+);
+
+
+INSERT INTO MANAGER (Manager_Fname, Manager_Lname, Password) VALUES ('MAN','AGER','PASSWORD');
+
 INSERT INTO SEAT (seat_num, row_num) VALUES (1,1);
 INSERT INTO SEAT (seat_num, row_num) VALUES (2,1);
 
