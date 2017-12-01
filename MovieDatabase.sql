@@ -249,10 +249,10 @@ INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Thor: R
 INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Daddy\'s Home 2', '2017-11-10', 100, 2);
 INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Justice League', '2017-11-17', 120, 3);
 INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Jigsaw', '2017-10-27', 92, 4);
-INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('A Bad Mom\'s Christmas', 104, 5);
+INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('A Bad Mom\'s Christmas', '2017-11-01', 104, 5);
 
 INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '02:30:00', 1);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '6:00:00', 1);
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '06:00:00', 1);
 INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (2, '12:30:00', 2);
 INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (3, '09:15:00', 3);
 INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (4, '11:45:00', 2);

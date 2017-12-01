@@ -56,16 +56,49 @@
 
 
           <div class="inner cover">
-            <h3 class="cover-heading">Find Recent Movies</h2>
-
-						<form>
-						 <!--Search Bar with drop down menu-->
-						 <div class="input-append">
-
-						 </div>
-					 </form>
-
-
+            <h2 align ="center" class="cover-heading">Billing Information</h2>
+            <br><br>
+          <form action="/action_page.html" align = "left">
+            <label for="NameCard">Name on the Card</label>
+            <br>
+            <input type="text" id="NameCard" class="form-control" placeholder="Input Name" required/>
+            <br><br>
+            <label for="cardNum">Card Number</label>
+            <input type="number" name="CardNum" class="form-control" placeholder="xxxx-xxxx-xxxx-1234" />
+            <br><br>
+           <div class="CVV">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv" placeholder="xxx">
+            </div>
+            <br>
+            <label>Expiration Date</label>
+           <div class="form-group" id="expiration-date" >
+                <select>
+                    <option value="01">January</option>
+                    <option value="02">February </option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <select>
+                    <option value="17"> 2017</option>
+                    <option value="18"> 2018</option>
+                    <option value="19"> 2019</option>
+                    <option value="20"> 2020</option>
+                    <option value="21"> 2021</option>
+                    <option value="22"> 2022</option>
+                </select>
+            </div>
+            <br><br>
+            <button type="button" class="btn btn-primary" id="subMov"> Submit</button>
+          </form> 
 
           </div>
 
