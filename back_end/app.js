@@ -63,6 +63,36 @@ con.connect(function(err) {
 });
 });*/
 
+router.get('/credentials', function(req, res){
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "isaiah",
+    password: "PASSword",
+    database : 'md',
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+  con.query("SELECT * FROM USER;",  function (err, result) {
+    if (err){
+      throw err;
+  }
+    else {
+      // res.send(result); //How to transfer this to app.js without it resulting in unidentified
+      if(req.query.username == result[0]['User_name'] && req.query.password == result[0]['Password']){
+        res.send("Success");
+      }else{
+        res.send("Failure");
+      }
+
+}
+});
+con.end();
+
+});
+});
+
 router.get('/postReview', function(req, res){
   var test = req.query;
   console.log(req.query);
