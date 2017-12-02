@@ -31,7 +31,7 @@
 						console.log($("#movieDate").val())
 						sessionStorage.setItem('movie', $("#movieList").find(":selected").val())
 						sessionStorage.setItem('date', $("#movieDate").val())
-						setTimeout(function(){ window.location.replace("/movieticket" + '#' + $("#movieList").find(":selected").val()); }, 1000);
+						window.location.replace("/movieticket" + '#' + $("#movieList").find(":selected").val()); 
 
 				});
 

@@ -91,6 +91,7 @@ CREATE TABLE SHOW_TIME
   movie_id INT NOT NULL,
   show_time TIME NOT NULL,
   theater_num INT NOT NULL,
+  show_date DATE NOT NULL,
   PRIMARY KEY(movie_id, show_time, theater_num),
   FOREIGN KEY (movie_id) REFERENCES MOVIE(movie_id),
   FOREIGN KEY (theater_num) REFERENCES THEATER_ROOM(theater_num)
@@ -250,12 +251,12 @@ INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Justice
 INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Jigsaw', '2017-10-27', 92, 4);
 INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('A Bad Mom\'s Christmas', '2017-11-01', 104, 5);
 
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '02:30:00', 1);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '06:00:00', 1);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (2, '12:30:00', 2);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (3, '09:15:00', 3);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (4, '11:45:00', 2);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (5, '05:50:00', 3);
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '02:30:00', 1, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '06:00:00', 1, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (2, '12:30:00', 2, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (3, '09:15:00', 3, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (4, '11:45:00', 2, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (5, '05:50:00', 3, '2017-12-25's);
 
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 1, 'Ragnarok is a neon-infused fantasy of what superhero films could look like. There are gigantic monsters and beautiful women; zombie armies and a big spooky dog; an evil witch and Jeff Goldblum, but this isn\'t just a wacky movie made for the sake of wackiness. Ragnarok is the child of confident filmmaking and understanding of what the Thor franchise could have always been.', 5);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 1, 'I had the opportunity to witness this goofy nonsense with my Father, who was a big fan of the Thor comics in his youth, and what he saw on screen destroyed everything he, and later, I, would come to enjoy about the titular character, who has been reduced to a comedic buffoon.', 1);
