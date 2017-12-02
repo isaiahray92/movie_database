@@ -101,11 +101,11 @@ con.end();
     if (err) throw err;
     var quer = [];
     if (req.query.type == "movie"){
-      quer.push("SELECT * FROM MOVIE WHERE NAME = \"" + req.query.name + "\"");
-      quer.push("SELECT fname, lname FROM ACTOR WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = \""+ req.query.name +"\"));");
-      quer.push("SELECT avg(rating) FROM REVIEW WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = \'" + req.query.name + "\');");
-      quer.push("SELECT fname, lname FROM DIRECTOR WHERE director_id = (SELECT director_id FROM MOVIE_DIRECTORS WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE NAME =\'" + req.query.name + "\'));");
-      quer.push("SELECT description, rating FROM REVIEW WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = \'" + req.query.name + "\');");
+      quer.push("SELECT * FROM MOVIE WHERE NAME = " + JSON.stringify(req.query.name) + ";");
+      quer.push("SELECT fname, lname FROM ACTOR WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = "+ JSON.stringify(req.query.name) +"));");
+      quer.push("SELECT avg(rating) FROM REVIEW WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = " + JSON.stringify(req.query.name) + ");");
+      quer.push("SELECT fname, lname FROM DIRECTOR WHERE director_id = (SELECT director_id FROM MOVIE_DIRECTORS WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE NAME = " + JSON.stringify(req.query.name) + "));");
+      quer.push("SELECT description, rating FROM REVIEW WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = " + JSON.stringify(req.query.name) + ");");
     }
     else{
       var fname = req.query.name.split(" ")[0];
@@ -177,7 +177,7 @@ console.log(req.query.movie)
 con.connect(function(err) {
   if (err) throw err;
     //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
-  con.query("SELECT * FROM SHOW_TIME WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = \""+ req.query.movie + "\");",  function (err, result) {
+  con.query("SELECT * FROM SHOW_TIME WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = "+ JSON.stringify(req.query.name) + ");",  function (err, result) {
     if (err){
       throw err;
   }

@@ -17,7 +17,7 @@
 				$.get('http://localhost:3000/getMovies', function(res) {
 								console.log(res)
 								for (i = 0; i < res.length; i++){
-									$( "#movieList" ).append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
+									$("#movieList").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
 								}
             });
     });
@@ -27,11 +27,18 @@
 	<script type="text/javascript">
     $(function() {
 			$('#subMov').click(function(evt){
-						console.log($("#movieList").find(":selected").val())
-						console.log($("#movieDate").val())
-						sessionStorage.setItem('movie', $("#movieList").find(":selected").val())
-						sessionStorage.setItem('date', $("#movieDate").val())
-						window.location.replace("/movieticket" + '#' + $("#movieList").find(":selected").val()); 
+					$("#DayTimeSelect").hide();
+					console.log($("#movieList").find(":selected").val())
+					var data = {name: $("#movieList").find(":selected").val()}
+					$.get('http://localhost:3000/getShowtimes', data, function(res) {
+									console.log(res)
+									for (i = 0; i < res.length; i++){
+										$("#movieList").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
+									}
+	            });
+					sessionStorage.setItem('movie', $("#movieList").find(":selected").val())
+
+					//window.location.replace("/movieticket" + '#' + $("#movieList").find(":selected").val());
 
 				});
 
@@ -66,26 +73,12 @@
             </div>
           </div>
 					<form>
-					 <!--Search Bar with drop down menu-->
-					 <!-- <div class="input-append">
-						 <input type="text" id="mySearch" class="form-control" placeholder="Search" required/>
-						 <select class="form-control">
-						  <option value="movie">Movie</option>
-						   <option value="director">Director</option>
-						  <option value="actor">Actor/Actress</option>
-						</select>
-						<button id="searchBt" class="btn btn-lg btn-default">Search</button>
-					 </div> -->
 
 				 </form>
 
           <div class="inner cover">
             <h2 class="cover-heading">What Movie Would You Like to See?</h2>
 
-            <p class="lead">
-              <!--<img src="http://localhost:3000/freshpotatoes.png">-->
-              <!-- <a button id="btnSignIn" class="btn btn-lg btn-default">Find Movies</a> -->
-              <!-- <button type="submit" class="btn btn-primary">Submit Changes</button>  -->
               <form>
                 <div class="input-append">
    							 <select id='movieList' class="form-control" required>
@@ -106,27 +99,16 @@
                   <option value="opt6">09:15:00</option>
                   <option value="opt7">11:45:00</option>
                 </select> -->
-            <div class = "label-date">
-                <label for="movie">Choose date:</label>
-            </div>
-             <div class="input-append">
-              <form>
-                <div>
-                  <input type="date" id="movieDate" name="movie">
-                </div>
-              </form>
-
-             </div>
-						 <br>
            </form>
               <button type="button" class="btn btn-primary" id="subMov">Submit</button>
               <!-- onclick="window.location.href='/movieticket'" -->
 
-            </p>
-            <p class="lead2">
-            </p>
 
           </div>
+					<div >
+						<select class="form-control" id='DayTimeSelect'>
+					 </select>
+					</div>
 
           <div class="mastfoot">
             <div class="inner">
