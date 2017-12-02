@@ -26,6 +26,8 @@
 						$("#description").empty();
 						$("#topper").empty();
 						$("#tablebody").empty();
+						$("#topper2").empty();
+						$("#reviewbody").empty();
 								if($("#typeSelector").val() == "movie"){
 									console.log(data)
 									$("#title1").append(data[0][0]['name']);
@@ -35,6 +37,10 @@
 									$("#topper").append("<th>Actors: </th>");
 									for (i = 0; i < data[1].length; i++){
 										$("#tablebody").append("<tr><td>" + data[1][i]['fname'] + " " + data[1][i]['lname'] + "</tr></td>")
+									}
+									$("#topper2").append("<th>Rating: </th> <th>Review:</th>");
+									for (i = 0; i < data[4].length; i++){
+										$("#reviewbody").append("<tr><td>" + data[4][i]['rating'] + "</td> <td> " + data[4][i]['description'] + "</tr></td>")
 									}
                 //$(".lead2").append(JSON.stringify(movies)); // show the list
 								}
@@ -154,6 +160,43 @@
 						      </tr> -->
 						    </tbody>
 						  </table>
+							<br>
+							<table class="table" align= "left" id="table2">
+								<thead>
+									<tr id="topper2">
+										<!--<th>Movie</th>
+										<th>Rating</th>
+										<th>Description</th>
+										<th>Director</th> -->
+									</tr>
+								</thead>
+								<tbody id ="reviewbody">
+									<!--<tr>
+										<td>Thor: Ragnarok</td>
+										<td>4.7</td>
+										<td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+									</tr>
+									<tr>
+										<td>Thor: Ragnarok</td>
+										<td>4.7</td>
+										<td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+									</tr>
+									<tr>
+										<td>Thor: Ragnarok</td>
+										<td>4.7</td>
+										<td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+									</tr>
+									<tr>
+										<td>Thor: Ragnarok</td>
+										<td>4.7</td>
+										<td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+									</tr> -->
+								</tbody>
+							</table>
 						</div>
           </div>
 					</div>

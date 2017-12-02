@@ -13,6 +13,18 @@
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript">
+		$(function GenerateMovies() {
+				$.get('http://localhost:3000/getMovies', function(res) {
+								console.log(res)
+								for (i = 0; i < res.length; i++){
+									$("#movieName").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
+								}
+						});
+		});
+
+	</script>
+
+	<script type="text/javascript">
     $(function(){
       $('#submitBt').click(function(evt){
 
@@ -79,8 +91,6 @@
 
               <div class="input-append">
  							 <select class="form-control" id='movieName'>
- 							  <option value="1">Thor: Ragnarok</option>
- 							   <option value="2">Daddy's Home 2</option>
  							</select>
  						 </div>
 
