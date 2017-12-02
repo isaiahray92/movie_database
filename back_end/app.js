@@ -23,6 +23,9 @@ router.get("/ticket", function(req,res){
 router.get("/movieticket", function(req,res){
   res.sendFile(path + "/movieticket.html");
 });
+router.get("/manLogin", function(req,res){
+  res.sendFile(path + "/manLogin.html");
+});
 router.get("/freshpotatoes", function(req,res){
   res.sendFile(path + "/freshpotatoes.png");
 });
