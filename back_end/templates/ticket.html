@@ -12,22 +12,29 @@
 	<link href="../style/cover.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-  <script type="text/javascript">
-		arr = [];
-    $(function(){
-			$('#subMov').click(function(evt){
-				evt.preventDefault();
-				// arr.push(mySearch.value);
-				$(".lead2").append(mySearch.value);
-			});
-
-      $('#btnSignIn').click(function(evt){
-        evt.preventDefault();
-        $.get('http://localhost:3000/request', function(movies) {
-                $( ".lead2" ).empty();
-                $(".lead2").append(JSON.stringify(movies)); // show the list
+	<script type="text/javascript">
+    $(function GenerateMovies() {
+				$.get('http://localhost:3000/getMovies', function(res) {
+								console.log(res)
+								for (i = 0; i < res.length; i++){
+									$( "#movieList" ).append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
+								}
             });
-      });
+    });
+
+  </script>
+
+	<script type="text/javascript">
+    $(function() {
+			$('#subMov').click(function(evt){
+						console.log($("#movieList").find(":selected").val())
+						console.log($("#movieDate").val())
+						sessionStorage.setItem('movie', $("#movieList").find(":selected").val())
+						sessionStorage.setItem('date', $("#movieDate").val())
+						setTimeout(function(){ window.location.replace("/movieticket" + '#' + $("#movieList").find(":selected").val()); }, 1000);
+
+				});
+
     });
 
   </script>
@@ -45,14 +52,14 @@
               <nav class="navbar navbar-inverse">
                 <a href="#" class="navbar-left"><img src="/freshpotatoes" width="100" height="100"></a>
 							 <div class="container-fluid">
-								 <div class="navbar-header">
+<!-- 								 <div class="navbar-header">
 									 <a class="navbar-brand" href="/ticket">Buy a Ticket</a>
-								 </div>
+								 </div> -->
 								 <ul class="nav navbar-nav">
 									 <!-- <li class="active"><a href="/">Home</a></li> -->
-									 <li><a href="/">Home</a></li>
-									 <li><a href="/review">Leave a Review</a></li>
-									 <!-- <li><a href="#">Page 3</a></li> -->
+									<li><a href="/">Home</a></li>
+									<li><a href="/review">Leave a Review</a></li>
+									<li class="active"><a href="/ticket">Buy a Ticket</a></li>
 								 </ul>
 							 </div>
 						 </nav>
@@ -81,19 +88,14 @@
               <!-- <button type="submit" class="btn btn-primary">Submit Changes</button>  -->
               <form>
                 <div class="input-append">
-   							 <select class="form-control" required>
-   							  <option value="opt1">Thor: Ragnarok</option>
-   							   <option value="opt2">Daddy's Home 2</option>
-                   <option value="opt3">Justice League</option>
-                   <option value="opt4">Jigsaw</option>
-                   <option value="opt5">A Bad Mom's Christmas</option>
+   							 <select id='movieList' class="form-control" required>
    							</select>
    						 </div>
-             </form>  
+             </form>
              <br>
 
               <form>
-             <!--Search Bar with drop down menu-->
+             <!--Search Bar with drop down menu
                 <div class="time-select">
                  <select class="form-control" required>
                   <option value="opt1">02:30:00</option>
@@ -103,20 +105,21 @@
                   <option value="opt5">12:30:00</option>
                   <option value="opt6">09:15:00</option>
                   <option value="opt7">11:45:00</option>
-                </select>
+                </select> -->
             <div class = "label-date">
                 <label for="movie">Choose date:</label>
             </div>
              <div class="input-append">
               <form>
                 <div>
-                  <input type="date" id="movie" name="movie">
+                  <input type="date" id="movieDate" name="movie">
                 </div>
-              </form
+              </form>
 
              </div>
-           </form>                 
-              <button type="button" class="btn btn-primary" id="subMov" onclick="window.location.href='/movieticket'"> Submit</button>
+						 <br>
+           </form>
+              <button type="button" class="btn btn-primary" id="subMov">Submit</button>
               <!-- onclick="window.location.href='/movieticket'" -->
 
             </p>
