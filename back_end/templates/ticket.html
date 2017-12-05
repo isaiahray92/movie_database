@@ -27,16 +27,16 @@
 	<script type="text/javascript">
     $(function() {
 			$('#subMov').click(function(evt){
-					$("#DayTimeSelect").hide();
+					$("#DayTimeSelect").empty();
+					$("#BuyMovie").show();
 					console.log($("#movieList").find(":selected").val())
-					var data = {name: $("#movieList").find(":selected").val()}
+					var data = { name : $("#movieList").find(":selected").val() }
 					$.get('http://localhost:3000/getShowtimes', data, function(res) {
 									console.log(res)
 									for (i = 0; i < res.length; i++){
-										$("#movieList").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
+										$("#DayTimeSelect").append("<option value=\"" + res[i]['show_date'] + res[i]['show_time'] + "\">" + res[i]['show_date'].substring(0,10) + " at " + res[i]['show_time'].substring(0,10) + "</option>");
 									}
 	            });
-					sessionStorage.setItem('movie', $("#movieList").find(":selected").val())
 
 					//window.location.replace("/movieticket" + '#' + $("#movieList").find(":selected").val());
 
@@ -45,6 +45,15 @@
     });
 
   </script>
+
+	<script type="text/javascript">
+		$(function() {
+				$('#BuyTicketBtn').click(function(evt){
+				window.location.replace("/movieticket" + '#' + $("#movieList").find(":selected").val() + '#' + $("#DayTimeSelect").find(":selected").val());
+			});
+		});
+
+	</script>
 
 </head>
 <body>
@@ -105,9 +114,11 @@
 
 
           </div>
-					<div >
+					<div id='BuyMovie' style="display: none;">
+						<h3>Select a showtime</h3>
 						<select class="form-control" id='DayTimeSelect'>
 					 </select>
+					 <button type="button" class="btn btn-primary" id="BuyTicketBtn">Buy Ticket</button>
 					</div>
 
           <div class="mastfoot">

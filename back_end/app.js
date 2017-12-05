@@ -190,3 +190,29 @@ con.end();
 
 });
 });
+
+router.get('/buyTicket', function(req, res){
+console.log(req.query.movie)
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "isaiah",
+    password: "PASSword",
+    database : 'md',
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+  con.query("SELECT * FROM SHOW_TIME WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = "+ JSON.stringify(req.query.name) + ");",  function (err, result) {
+    if (err){
+      throw err;
+  }
+    else {
+      console.log(result);
+      res.send(result); //How to transfer this to app.js without it resulting in unidentified
+}
+});
+con.end();
+
+});
+});
