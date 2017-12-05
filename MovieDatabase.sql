@@ -185,6 +185,7 @@ INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('Matthew', 'Gerber', 3);
 INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('Cole', 'Polychronis', 4);
 INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('Taylor', 'Page', 5);
 
+
 INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Chris', 'Hemsworth', 'Born in Melbourne, Australia, to Leonie (van Os), a teacher of English, and Craig Hemsworth, a social-services counselor.', 0.0);
 INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Tom', 'Hiddleston', 'Thomas William Hiddleston, was born in Westminister, London, to Enlgish-born Diana Patricia (Servaes) and Scottish born James Norman Hiddleston.', 0.0);
 INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Cate', 'Blanchett', 'Cate Blanchett was born on May 14, 1969 in Melbourne, Victoria, Australia, to June (Gamble), an Australian teacher and property developer and Robert Dewett Blanchett Jr., an American advertising Executive.',0.0);
@@ -200,6 +201,18 @@ INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Callum', 'Rennie', 'Callum 
 INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mila', 'Kunis', 'Mila Kunis was born Milena Markovna Kunis to a Jewish family in Chernivtsi, Ukraine, USSR (now independent Ukraine).',0.0);
 INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Kristen', 'Bell', 'Kristen Anne Bell (born 1980) is an American actress and singer.',0.0);
 INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Kathryn', 'Hahn', 'Kathryn Hahn was born in Westchester, Illinois, but her family then moved to Cleveland, Ohio, where she spent most of her time growing up.',0.0);
+
+
+
+delimiter //
+
+CREATE TRIGGER furckit BEFORE INSERT ON REVIEW
+  FOR EACH ROW
+  BEGIN
+  INSERT INTO ACTOR SET rate = rate + NEW.rating WHERE act_id IN (SELECT act_id FROM ACTOR WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE movie_id = NEW.movie_id)));
+  END;
+//
+delimiter ;
 
 INSERT INTO DIRECTOR (fname, lname, bio) VALUES ('Taika', 'Waititi', 'Taiki Waititi, also known as Taika Cohen, hails from Raukokore region of the East Coast, and is of Te-Whanau-a-Apanui (father) and Jewish (mother) descent.');
 INSERT INTO DIRECTOR (fname, lname, bio) VALUES ('Sean', 'Anders', 'Sean Anders is a writer and director, known for Horrible Bosses 2 (2014) and Daddys Home (2015).');
