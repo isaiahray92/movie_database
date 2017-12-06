@@ -17,7 +17,6 @@
     $('#login').click(function(evt){
 
       evt.preventDefault();
-<<<<<<< HEAD
       var data = {username : $("#username").val(), password : $("#password").val()};
       $.get('http://localhost:3000/credentials', data, function(req, res) {
           console.log(req);
@@ -32,16 +31,98 @@
           }else{
             alert("Sorry. Username or Password is incorrect.");
           }
-
-
-
         });
-=======
-      // var data = { movie : $("#movieName").find(":selected").val(), rating : $("#stars input[type='radio']:checked").val(), review : $("#inputAddress").val()
-      console.log($("#username").val());
->>>>>>> deb170fd3ea6f04c71cc299297cbb8d478be1f66
     })
   });
+
+  $(function(){
+    $('#typeSelector').on("change", function(evt){
+
+      evt.preventDefault();
+      console.log($('#typeSelector').val());
+      if($('#typeSelector').val() == "prod"){
+        $("#prodCoInsert").show();
+        $("#directorInsert").hide();
+        $("#actorInsert").hide();
+      }else if($('#typeSelector').val() == "director"){
+        $("#directorInsert").show();
+        $("#prodCoInsert").hide();
+        $("#actorInsert").hide();
+      }else{
+        $("#actorInsert").show();
+        $("#prodCoInsert").hide();
+        $("#directorInsert").hide();
+      }
+
+    })
+  });
+
+  $(function(){
+    $('#typeSelector2').on("change", function(evt){
+
+      evt.preventDefault();
+      console.log($('#typeSelector2').val());
+      if($('#typeSelector2').val() == "prod"){
+        $("#prodCoDel").show();
+        $("#directorDel").hide();
+        $("#actorDel").hide();
+      }else if($('#typeSelector2').val() == "director"){
+        $("#directorDel").show();
+        $("#prodCoDel").hide();
+        $("#actorDel").hide();
+      }else{
+        $("#actorDel").show();
+        $("#prodCoDel").hide();
+        $("#directorDel").hide();
+      }
+
+    })
+  });
+
+  $(function GenerateMovies() {
+    $.get('http://localhost:3000/getMovies', function(res) {
+      console.log(res)
+      for (i = 0; i < res.length; i++){
+        $("#reviewOpts").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
+      }
+    });
+  });
+  // $(function(){
+  //   $('#insert').click(function(evt){
+  //
+  //     evt.preventDefault();
+  //     if($('#typeSelector2').val() == "director"){
+  //       var data = { dirfname : $("#dirname").val(), dirlname : $("#dirlname").val(), dirbio : $("#dirbio").val()}
+  //     }else if($('#typeSelector2').val() == "actor")
+  //       var data = { actfname : $("#actfname").val(), actlname : $("#actlname").val(), actbio : $("#actbio").val()}
+  //     else{
+  //       var data = { name : $("#name").val(), owner : $("#owner").val(), country : $("#country").val()}
+  //     }
+  //
+  //   console.log(data)
+  //   });
+  // });
+
+  function openTab(evt, tab) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tab-pane");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tab).style.display = "block";
+    evt.currentTarget.className += " active";
+};
 
 </script>
 
@@ -80,25 +161,24 @@
             textarea.html-text-box {background-color:#ffffff;background-image:url(http://);background-repeat:no-repeat;background-attachment:fixed;border-width:1;border-style:solid;border-color:#cccccc;font-family:Arial;font-size:12pt;color:#000000;}
             input.html-text-box {background-color:#ffffff;font-family:Arial;font-size:12pt;color:#000000;}
             </style>
-<<<<<<< HEAD
             <div class="wrapper" id="peasant">
               <form class="form-signin" id="managerForm">
-=======
-            <div class="wrapper">
-              <form class="form-signin">
->>>>>>> deb170fd3ea6f04c71cc299297cbb8d478be1f66
                 <h2 class="form-signin-heading">Please login</h2>
-                <input type="text" class="form-control" id="username" placeholder="Email Address" required="" autofocus="" />
+                <input type="text" class="form-control" id="username" placeholder="Username" required="" autofocus="" />
                 <input type="password" class="form-control" id="password" placeholder="Password" required=""/>
                 <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
               </form>
             </div>
-<<<<<<< HEAD
             <div class="wrapper" id="manager" hidden>
-              <p>Here is the div where we will eventually put control shenanigans.</p>
+              <p>Manager view</p>
+              <div class="input-append">
+                <select class="form-control" id="reviewOpts">
+                  <!-- <option value="prod">Production Company</option>
+                  <option value="director">Director</option>
+                  <option value="actor">Actor/Actress</option> -->
+                </select>
+              </div>
             </div>
-=======
->>>>>>> deb170fd3ea6f04c71cc299297cbb8d478be1f66
           </div>
 
           <div class="mastfoot">

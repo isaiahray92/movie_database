@@ -107,7 +107,7 @@ router.get('/postReview', function(req, res){
 con.connect(function(err) {
   if (err) throw err;
     //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
-  con.query("INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES ( 2, "+ req.query.movie +", \'"+ req.query.review +"\', "+ req.query.rating +") ",  function (err, result) {
+  con.query("INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES ( 2, (SELECT movie_id FROM MOVIE WHERE MOVIE.name = \""+ req.query.movie +"\"), \'"+ req.query.review +"\', "+ req.query.rating +") ",  function (err, result) {
     if (err){
       throw err;
   }
@@ -135,9 +135,10 @@ con.end();
     var quer = [];
     if (req.query.type == "movie"){
       quer.push("SELECT * FROM MOVIE WHERE NAME = \"" + req.query.name + "\"");
-      quer.push("SELECT fname, lname FROM ACTOR WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE movie_id = 1));");
+      quer.push("SELECT fname, lname FROM ACTOR WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = \""+ req.query.name +"\"));");
       quer.push("SELECT avg(rating) FROM REVIEW WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = \'" + req.query.name + "\');");
       quer.push("SELECT fname, lname FROM DIRECTOR WHERE director_id = (SELECT director_id FROM MOVIE_DIRECTORS WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE NAME =\'" + req.query.name + "\'));");
+      quer.push("SELECT description, rating FROM REVIEW WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = \'" + req.query.name + "\');");
     }
     else{
       var fname = req.query.name.split(" ")[0];
@@ -168,6 +169,57 @@ con.end();
   console.log(prev);
     setTimeout(function(){ res.send(prev); }, 100);
     con.end();
+
+});
+});
+
+router.get('/getMovies', function(req, res){
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "isaiah",
+    password: "PASSword",
+    database : 'md',
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+  con.query("SELECT name FROM MOVIE;",  function (err, result) {
+    if (err){
+      throw err;
+  }
+    else {
+      console.log(result);
+      res.send(result); //How to transfer this to app.js without it resulting in unidentified
+}
+});
+con.end();
+
+});
+});
+
+router.get('/getShowtimes', function(req, res){
+console.log(req.query.movie)
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "isaiah",
+    password: "PASSword",
+    database : 'md',
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+  con.query("SELECT * FROM SHOW_TIME WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = \""+ req.query.movie + "\");",  function (err, result) {
+    if (err){
+      throw err;
+  }
+    else {
+      console.log(result);
+      res.send(result); //How to transfer this to app.js without it resulting in unidentified
+}
+});
+con.end();
 
 });
 });
