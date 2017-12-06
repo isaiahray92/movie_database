@@ -26,6 +26,8 @@
 						$("#description").empty();
 						$("#topper").empty();
 						$("#tablebody").empty();
+						$("#topper2").empty();
+						$("#reviewbody").empty();
 								if($("#typeSelector").val() == "movie"){
 									console.log(data)
 									$("#title1").append(data[0][0]['name']);
@@ -35,6 +37,10 @@
 									$("#topper").append("<th>Actors: </th>");
 									for (i = 0; i < data[1].length; i++){
 										$("#tablebody").append("<tr><td>" + data[1][i]['fname'] + " " + data[1][i]['lname'] + "</tr></td>")
+									}
+									$("#topper2").append("<th>Rating: </th> <th>Review:</th>");
+									for (i = 0; i < data[4].length; i++){
+										$("#reviewbody").append("<tr><td>" + data[4][i]['rating'] + "</td> <td> " + data[4][i]['description'] + "</tr></td>")
 									}
                 //$(".lead2").append(JSON.stringify(movies)); // show the list
 								}
@@ -70,19 +76,16 @@
 
         <div class="cover-container">
 
-          <div class="masthead clearfix">
+          <div class="masthead-clearfix">
 
             <div class="inner">
 
 							<nav class="navbar navbar-inverse">
 								<a href="#" class="navbar-left"><img src="/freshpotatoes" width="100" height="100"></a>
 							<div class="container-fluid">
-								<div class="navbar-header">
-									<a class="navbar-brand" href="/">Home</a>
-								</div>
 
 								<ul class="nav navbar-nav">
-									<!-- <li class="active"><a href="/">Home</a></li> -->
+									<li class="active"><a href="/">Home</a></li>
 									<li><a href="/review">Leave a Review</a></li>
 									<li><a href="/ticket">Buy a Ticket</a></li>
 									<li><a href="/manLogin">Manager Login</a></li>
@@ -92,21 +95,24 @@
 						</nav>
             </div>
           </div>
+        <div style="width:690px;height:650px;overflow:auto;padding:5px;">
 
 		<div class="bigDiv">
-          <div class="inner cover">
-            <h3 class="cover-heading">Search Potatoes Database</h2>
-
+          <div class="inner-cover">
+            <h2 class="cover-heading">Search Potatoes Database</h2>
+            	<br>
 						<form>
 						 <!--Search Bar with drop down menu-->
 						 <div class="input-append">
 							 <input type="text" id="mySearch" class="form-control" placeholder="Search" required/>
+							 <br>
 							 <select class="form-control" id="typeSelector">
 							  <option value="movie">Movie</option>
 							   <option value="director">Director</option>
 							  <option value="actor">Actor/Actress</option>
 							</select>
-							<button id="searchBt" class="btn btn-lg btn-default">Search</button>
+							<br>
+							<button type="button" class="btn btn-primary" id="searchBt">Search</button>
 						 </div>
 					 </form>
 
@@ -155,16 +161,53 @@
 						      </tr> -->
 						    </tbody>
 						  </table>
+							<br>
+							<table class="table" align= "left" id="table2">
+								<thead>
+									<tr id="topper2">
+										<!--<th>Movie</th>
+										<th>Rating</th>
+										<th>Description</th>
+										<th>Director</th> -->
+									</tr>
+								</thead>
+								<tbody id ="reviewbody">
+									<!--<tr>
+										<td>Thor: Ragnarok</td>
+										<td>4.7</td>
+										<td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+									</tr>
+									<tr>
+										<td>Thor: Ragnarok</td>
+										<td>4.7</td>
+										<td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+									</tr>
+									<tr>
+										<td>Thor: Ragnarok</td>
+										<td>4.7</td>
+										<td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+									</tr>
+									<tr>
+										<td>Thor: Ragnarok</td>
+										<td>4.7</td>
+										<td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
+										<td>"Example #1"</td>
+									</tr> -->
+								</tbody>
+							</table>
 						</div>
           </div>
 					</div>
-
+		</div>
 
 
           <div class="mastfoot">
 
             <div class="inner">
-              <p><!--Fresh potatoes-->
+              <p><!-- Fresh potatoes -->
 
               </p>
             </div>
