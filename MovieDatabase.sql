@@ -27,6 +27,7 @@ CREATE TABLE ACTOR
   fname VARCHAR(100),
   lname VARCHAR(100),
   bio VARCHAR(1000),
+  rate INT,
   PRIMARY KEY(act_id)
 );
 
@@ -186,30 +187,29 @@ INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('Cole', 'Polychronis', 4);
 INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('Taylor', 'Page', 5);
 
 
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Chris', 'Hemsworth', 'Born in Melbourne, Australia, to Leonie (van Os), a teacher of English, and Craig Hemsworth, a social-services counselor.', 0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Tom', 'Hiddleston', 'Thomas William Hiddleston, was born in Westminister, London, to Enlgish-born Diana Patricia (Servaes) and Scottish born James Norman Hiddleston.', 0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Cate', 'Blanchett', 'Cate Blanchett was born on May 14, 1969 in Melbourne, Victoria, Australia, to June (Gamble), an Australian teacher and property developer and Robert Dewett Blanchett Jr., an American advertising Executive.',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Will', 'Ferrell', 'John William Ferrell was born in Irving, California to Betty Kay (Overman), a teacher, and Roy Lee Ferrell Jr., a musician.', 0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mark', 'Whalberg', 'American actor Mark Whalberg is one of a handful of respectfed entertainers who successfully made the transition from Teen Pop Idol to acclaimed actor.',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mel', 'Gibson', 'Mel Columcillle Gerard Gibson was born January 3, 1956 in Peekskill, New York, USA, as a sixth of eleven children of Hutton Gibson, a railroad brakeman and Anne Patricia (Riley) Gibson (who died in December of 1990.)',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Ben', 'Affleck', 'American actor and filmmaker Benjamin Géza Affleck-Boldt was born on August 15, 1972 in Berkeley, California, and was raised in Cambridge, Massachusetts.',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Gal', 'Gadot', 'Gal Gadot is an Israeli actress, singer, martial artist, and model.',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Jason', 'Momoa', 'Joseph Jason Namakaeha Momoa was born on August 1, 1979 in Honolulu, Hawaii. He is the son of Coni (Lemke), a photographer, and Joseph Momoa, a painter.',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Matt', 'Passmore', 'Matt Passmore was born on December 24, 1973 in Wynnum-Manly, Queensland, Australia as Matthew Passmore. He is an actor and producer, known for The Glades (2010), Jigsaw (2017) and McLeod\'s Daughters (2001).',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Tobin', 'Bell', 'Tobin Bell is an American actor with a career in film, television and theater spanning three decades. He was born in Queens, New York and raised in Weymouth, Mass.',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Callum', 'Rennie', 'Callum Keith Rennie was born in England, raised in Alberta, Canada and came late to acting - he discovered theatre in Edmonton at the age of 25.',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mila', 'Kunis', 'Mila Kunis was born Milena Markovna Kunis to a Jewish family in Chernivtsi, Ukraine, USSR (now independent Ukraine).',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Kristen', 'Bell', 'Kristen Anne Bell (born 1980) is an American actress and singer.',0.0);
-INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Kathryn', 'Hahn', 'Kathryn Hahn was born in Westchester, Illinois, but her family then moved to Cleveland, Ohio, where she spent most of her time growing up.',0.0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Chris', 'Hemsworth', 'Born in Melbourne, Australia, to Leonie (van Os), a teacher of English, and Craig Hemsworth, a social-services counselor.', 0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Tom', 'Hiddleston', 'Thomas William Hiddleston, was born in Westminister, London, to Enlgish-born Diana Patricia (Servaes) and Scottish born James Norman Hiddleston.', 0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Cate', 'Blanchett', 'Cate Blanchett was born on May 14, 1969 in Melbourne, Victoria, Australia, to June (Gamble), an Australian teacher and property developer and Robert Dewett Blanchett Jr., an American advertising Executive.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Will', 'Ferrell', 'John William Ferrell was born in Irving, California to Betty Kay (Overman), a teacher, and Roy Lee Ferrell Jr., a musician.', 0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mark', 'Whalberg', 'American actor Mark Whalberg is one of a handful of respectfed entertainers who successfully made the transition from Teen Pop Idol to acclaimed actor.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mel', 'Gibson', 'Mel Columcillle Gerard Gibson was born January 3, 1956 in Peekskill, New York, USA, as a sixth of eleven children of Hutton Gibson, a railroad brakeman and Anne Patricia (Riley) Gibson (who died in December of 1990.)',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Ben', 'Affleck', 'American actor and filmmaker Benjamin Géza Affleck-Boldt was born on August 15, 1972 in Berkeley, California, and was raised in Cambridge, Massachusetts.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Gal', 'Gadot', 'Gal Gadot is an Israeli actress, singer, martial artist, and model.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Jason', 'Momoa', 'Joseph Jason Namakaeha Momoa was born on August 1, 1979 in Honolulu, Hawaii. He is the son of Coni (Lemke), a photographer, and Joseph Momoa, a painter.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Matt', 'Passmore', 'Matt Passmore was born on December 24, 1973 in Wynnum-Manly, Queensland, Australia as Matthew Passmore. He is an actor and producer, known for The Glades (2010), Jigsaw (2017) and McLeod\'s Daughters (2001).',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Tobin', 'Bell', 'Tobin Bell is an American actor with a career in film, television and theater spanning three decades. He was born in Queens, New York and raised in Weymouth, Mass.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Callum', 'Rennie', 'Callum Keith Rennie was born in England, raised in Alberta, Canada and came late to acting - he discovered theatre in Edmonton at the age of 25.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mila', 'Kunis', 'Mila Kunis was born Milena Markovna Kunis to a Jewish family in Chernivtsi, Ukraine, USSR (now independent Ukraine).',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Kristen', 'Bell', 'Kristen Anne Bell (born 1980) is an American actress and singer.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Kathryn', 'Hahn', 'Kathryn Hahn was born in Westchester, Illinois, but her family then moved to Cleveland, Ohio, where she spent most of her time growing up.',0);
 
 
 
 delimiter //
-
-CREATE TRIGGER furckit BEFORE INSERT ON REVIEW
+CREATE TRIGGER DAMN BEFORE INSERT ON REVIEW
   FOR EACH ROW
   BEGIN
-  INSERT INTO ACTOR SET rate = rate + NEW.rating WHERE act_id IN (SELECT act_id FROM ACTOR WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE movie_id = NEW.movie_id)));
+  UPDATE ACTOR SET rate = rate + NEW.rating WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE movie_id = NEW.movie_id));
   END;
 //
 delimiter ;
@@ -331,3 +331,32 @@ INSERT INTO TICKET (movie_date, start_time, fname, lname, seat_num, row_num, mov
 
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 1);
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 2);
+
+
+--Insert checks custormer matching first name last name
+--If there is already a customer in there it sullectec there customer id
+--FI the cuseter is not in there then the customer fist name last name
+--Inset into ticket
+-- the movie
+-- movie (string), movie date (date), start time(time), fname(varchar), lname(varchar), credit_card number(int)
+
+
+-- DELIMITER //
+--
+-- CREATE FUNCTION InsertTicket(movie VARCHAR(30), date)
+--   RETURNS VARCHAR(20)
+--
+--   BEGIN
+--     DECLARE s VARCHAR(20);
+--
+--     IF n > m THEN SET s = '>';
+--     ELSEIF n = m THEN SET s = '=';
+--     ELSE SET s = '<';
+--     END IF;
+--
+--     SET s = CONCAT(n, ' ', s, ' ', m);
+--
+--     RETURN s;
+--   END //
+--
+-- DELIMITER ;
