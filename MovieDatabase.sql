@@ -180,7 +180,6 @@ CREATE TABLE USER
   PRIMARY KEY(User_name)
 );
 
-
 INSERT INTO USER (User_name, Password) VALUES ('USERNAME','PASSWORD');
 
 INSERT INTO SEAT (seat_num, row_num) VALUES (1,1);

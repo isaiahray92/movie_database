@@ -23,6 +23,9 @@ router.get("/ticket", function(req,res){
 router.get("/movieticket", function(req,res){
   res.sendFile(path + "/movieticket.html");
 });
+router.get("/manLogin", function(req,res){
+  res.sendFile(path + "/manLogin.html");
+});
 router.get("/freshpotatoes", function(req,res){
   res.sendFile(path + "/freshpotatoes.png");
 });
@@ -59,6 +62,36 @@ con.connect(function(err) {
   con.end();
 });
 });*/
+
+router.get('/credentials', function(req, res){
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "isaiah",
+    password: "PASSword",
+    database : 'md',
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+  con.query("SELECT * FROM USER;",  function (err, result) {
+    if (err){
+      throw err;
+  }
+    else {
+      // res.send(result); //How to transfer this to app.js without it resulting in unidentified
+      if(req.query.username == result[0]['User_name'] && req.query.password == result[0]['Password']){
+        res.send("Success");
+      }else{
+        res.send("Failure");
+      }
+
+}
+});
+con.end();
+
+});
+});
 
 router.get('/postReview', function(req, res){
   var test = req.query;

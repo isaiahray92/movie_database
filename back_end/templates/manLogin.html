@@ -17,8 +17,29 @@
     $('#login').click(function(evt){
 
       evt.preventDefault();
+<<<<<<< HEAD
+      var data = {username : $("#username").val(), password : $("#password").val()};
+      $.get('http://localhost:3000/credentials', data, function(req, res) {
+          console.log(req);
+          // console.log(res);
+          if(req == "Success"){
+              console.log("YAYAY");
+              $("#peasant").hide();
+              $("#manager").show();
+              // var parent = document.getElementById("Momma");
+              // var child = document.getElementById("managerForm");
+              // parent.removeChild(child);
+          }else{
+            alert("Sorry. Username or Password is incorrect.");
+          }
+
+
+
+        });
+=======
       // var data = { movie : $("#movieName").find(":selected").val(), rating : $("#stars input[type='radio']:checked").val(), review : $("#inputAddress").val()
       console.log($("#username").val());
+>>>>>>> deb170fd3ea6f04c71cc299297cbb8d478be1f66
     })
   });
 
@@ -59,14 +80,25 @@
             textarea.html-text-box {background-color:#ffffff;background-image:url(http://);background-repeat:no-repeat;background-attachment:fixed;border-width:1;border-style:solid;border-color:#cccccc;font-family:Arial;font-size:12pt;color:#000000;}
             input.html-text-box {background-color:#ffffff;font-family:Arial;font-size:12pt;color:#000000;}
             </style>
+<<<<<<< HEAD
+            <div class="wrapper" id="peasant">
+              <form class="form-signin" id="managerForm">
+=======
             <div class="wrapper">
               <form class="form-signin">
+>>>>>>> deb170fd3ea6f04c71cc299297cbb8d478be1f66
                 <h2 class="form-signin-heading">Please login</h2>
                 <input type="text" class="form-control" id="username" placeholder="Email Address" required="" autofocus="" />
                 <input type="password" class="form-control" id="password" placeholder="Password" required=""/>
                 <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
               </form>
             </div>
+<<<<<<< HEAD
+            <div class="wrapper" id="manager" hidden>
+              <p>Here is the div where we will eventually put control shenanigans.</p>
+            </div>
+=======
+>>>>>>> deb170fd3ea6f04c71cc299297cbb8d478be1f66
           </div>
 
           <div class="mastfoot">
