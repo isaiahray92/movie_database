@@ -73,12 +73,13 @@ body {
 .masthead-nav > li + li {
   margin-left: 20px;
 }
+
 .masthead-nav > li > a {
   padding-right: 0;
   padding-left: 0;
   font-size: 16px;
   font-weight: bold;
-  color: #00008B; /* IE8 proofing */
+  color: #fff; /* IE8 proofing */
   color: rgba(255,255,255,.75);
   border-bottom: 2px solid transparent;
 }
@@ -94,7 +95,6 @@ body {
   color: #fff;
   border-bottom-color: #fff;
 }
-
 
 @media (min-width: 768px) {
   .masthead-brand {
@@ -252,6 +252,6 @@ body {
   color: black;
 }
 .container-fluid{
-background-color: #D2B48C;
+background-color: #4d4d4d;
 }
 
