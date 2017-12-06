@@ -14,12 +14,13 @@
 
 	<script type="text/javascript">
     $(function() {
-			$('#searchBt').click(function(evt){
+			$('#subMov').click(function(evt){
 				evt.preventDefault();
-			console.log(window.location.hash.substring(1))
-			var data = { movie : window.location.hash.substring(1), daytime : window.location.hash.substring(2),
-			fname : $("#fname").val(), lname : $("#lname").val(), 
-			cc : $("#cardNum").val(), cvv : $("#cvv").val()};
+			var params = window.location.search.substring(1).split("&")
+			console.log(params[0].replace('%20', ' ').substring(6))
+			var data = { movie : params[0].replace('%20', ' ').substring(6), date: params[1].replace('%20', ' ').substring(5), time : params[2].replace('%20', ' ').substring(5),
+			fname : $("#fname").val(), lname : $("#lname").val(),
+			cc : $("#cardNum").val()};
 			console.log(data)
 			$.get('http://localhost:3000/BuyTicket', data, function(res) {
 							console.log(res)

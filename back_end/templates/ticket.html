@@ -34,7 +34,7 @@
 					$.get('http://localhost:3000/getShowtimes', data, function(res) {
 									console.log(res)
 									for (i = 0; i < res.length; i++){
-										$("#DayTimeSelect").append("<option value=\"" + res[i]['show_date'] + res[i]['show_time'] + "\">" + res[i]['show_date'].substring(0,10) + " at " + res[i]['show_time'].substring(0,10) + "</option>");
+										$("#DayTimeSelect").append("<option value=\"" + res[i]['show_date'].substring(0,10) + res[i]['show_time'] + "\">" + res[i]['show_date'].substring(0,10) + " at " + res[i]['show_time'] + "</option>");
 									}
 	            });
 
@@ -49,7 +49,7 @@
 	<script type="text/javascript">
 		$(function() {
 				$('#BuyTicketBtn').click(function(evt){
-				window.location.replace("/movieticket" + '#' + $("#movieList").find(":selected").val() + '#' + $("#DayTimeSelect").find(":selected").val());
+				window.location.replace("/movieticket?movie=" + $("#movieList").find(":selected").val() + '&date=' + $("#DayTimeSelect").find(":selected").val().substring(0,10) + '&time=' + $("#DayTimeSelect").find(":selected").val().substring(10));
 			});
 		});
 
