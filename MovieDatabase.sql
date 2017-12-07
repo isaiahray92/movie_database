@@ -216,7 +216,7 @@ INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Kathryn', 'Hahn', 'Kathryn 
 
 
 delimiter //
-CREATE TRIGGER DAMN BEFORE INSERT ON REVIEW
+CREATE TRIGGER updateRating BEFORE INSERT ON REVIEW
   FOR EACH ROW
   BEGIN
   UPDATE ACTOR SET rate = rate + NEW.rating WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE movie_id = NEW.movie_id));

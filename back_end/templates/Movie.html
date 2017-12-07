@@ -28,6 +28,7 @@
 						$("#tablebody").empty();
 						$("#topper2").empty();
 						$("#reviewbody").empty();
+						$("#rate").empty();
 								if($("#typeSelector").val() == "movie"){
 									console.log(data)
 									$("#title1").append(data[0][0]['name']);
@@ -57,6 +58,7 @@
 									console.log(data[0]);
 									$("#title1").append(data[0][0]['fname'] + " " + data[0][0]['lname']);
 									$("#description").append(data[0][0]['bio']);
+									$("#rate").append('Actor Rated: ' + data[0][0]['rate'] + ' Potatoes');
 									$("#topper").append("<th>Has Acted In:</th>");
 									for (i = 0; i < data[1].length; i++){
 										$("#tablebody").append("<tr><td>" + data[1][i]['name'] + "</tr></td>")
@@ -124,6 +126,8 @@
 								 <p id="sub1"></p>
 							 </div>
 							 <p id="description"></p>
+							 <br>
+							 <p id="rate"></p>
 						 </div>
 							<table class="table" align= "left" id="table1">
 						    <thead>
