@@ -91,6 +91,7 @@ CREATE TABLE SHOW_TIME
   movie_id INT NOT NULL,
   show_time TIME NOT NULL,
   theater_num INT NOT NULL,
+  show_date DATE NOT NULL,
   PRIMARY KEY(movie_id, show_time, theater_num),
   FOREIGN KEY (movie_id) REFERENCES MOVIE(movie_id),
   FOREIGN KEY (theater_num) REFERENCES THEATER_ROOM(theater_num)
@@ -250,12 +251,12 @@ INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Justice
 INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Jigsaw', '2017-10-27', 92, 4);
 INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('A Bad Mom\'s Christmas', '2017-11-01', 104, 5);
 
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '02:30:00', 1);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '06:00:00', 1);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (2, '12:30:00', 2);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (3, '09:15:00', 3);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (4, '11:45:00', 2);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (5, '05:50:00', 3);
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (1, '02:30:00', 1, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (1, '06:00:00', 1, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (2, '12:30:00', 2, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (3, '09:15:00', 3, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (4, '11:45:00', 2, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (5, '05:50:00', 3, '2017-12-25');
 
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 1, 'Ragnarok is a neon-infused fantasy of what superhero films could look like. There are gigantic monsters and beautiful women; zombie armies and a big spooky dog; an evil witch and Jeff Goldblum, but this isn\'t just a wacky movie made for the sake of wackiness. Ragnarok is the child of confident filmmaking and understanding of what the Thor franchise could have always been.', 5);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 1, 'I had the opportunity to witness this goofy nonsense with my Father, who was a big fan of the Thor comics in his youth, and what he saw on screen destroyed everything he, and later, I, would come to enjoy about the titular character, who has been reduced to a comedic buffoon.', 1);
@@ -265,8 +266,13 @@ INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 3, 'D
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 3, '"Justice League" doesn’t have anyone with the witty way with a line Robert Downey Jr. brings to Ironman, or the swagger of Chris Hemsworth (Thor) to carry it. But Momoa’s bemused physicality has its own cockiness, Miller’s wide-eyed Flash innocence and Gadot’s commitment to earnest, brave and spoiling for a fight Diana put “The Avengers” on notice.', 3);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (3, 4, 'If you don’t like Saw, this isn’t going to change your mind – but it’s skillful, satisfying schlock and respectful of its fanbase. And the final death is a show-stopping coup de grace.', 3);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 4, 'There are a couple of impressive set pieces in “Jigsaw,” but the traps seem fairly rudimentary, and it’s up to the camera work to provide the needed jolts.', 2);
+<<<<<<< HEAD
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (3, 5, 'This movie consists of a boring story line with an unnecessary Christmas theme. While some of the actors gave me hope of this movie being watchable, you will only feel dread as it drags on and on without any memorable scenes and a bronze lining of generic nonsensical comedy. Nothing but a seasonal money grab, huge waste of time.', 1);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 5, 'It’s by no means good, but there are moments of effective emotion and comedy that make up for some of the dumber jokes, and sheer charisma largely carries it along.', 1)
+=======
+INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 5, 'This movie consists of a boring story line with an unnecessary Christmas theme. While some of the actors gave me hope of this movie being watchable, you will only feel dread as it drags on and on without any memorable scenes and a bronze lining of generic nonsensical comedy. Nothing but a seasonal money grab, huge waste of time.', 1);
+INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 5, 'It’s by no means good, but there are moments of effective emotion and comedy that make up for some of the dumber jokes, and sheer charisma largely carries it along.', 1)
+>>>>>>> e6141f0817bcc1648e8b0117d0dbdcfc57df4bb0
 
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 1);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 2);
