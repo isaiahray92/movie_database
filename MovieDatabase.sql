@@ -353,7 +353,7 @@ INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 1);
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 2);
 
 
---Insert checks custormer matching first name last name
+--Insert checks customer matching first name last name
 --If there is already a customer in there it sullectec there customer id
 --FI the cuseter is not in there then the customer fist name last name
 --Inset into ticket
