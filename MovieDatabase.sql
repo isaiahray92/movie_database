@@ -341,22 +341,40 @@ INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 2);
 -- movie (string), movie date (date), start time(time), fname(varchar), lname(varchar), credit_card number(int)
 
 
--- DELIMITER //
---
--- CREATE FUNCTION InsertTicket(movie VARCHAR(30), date)
---   RETURNS VARCHAR(20)
---
---   BEGIN
---     DECLARE s VARCHAR(20);
---
---     IF n > m THEN SET s = '>';
---     ELSEIF n = m THEN SET s = '=';
---     ELSE SET s = '<';
---     END IF;
---
---     SET s = CONCAT(n, ' ', s, ' ', m);
---
---     RETURN s;
---   END //
---
--- DELIMITER ;
+DROP PROCEDURE IF EXISTS FindName;
+DELIMITER //
+CREATE PROCEDURE FindName(movie VARCHAR(50), movie_date DATE, Fname VARCHAR(50), Lname VARCHAR(50),start_time TIME, credit_card INT)
+
+BEGIN
+  DECLARE done INT DEFAULT FALSE;
+  DECLARE NameFetch VARCHAR(50) DEFAULT '' ;
+  DECLARE LNameFetch VARCHAR(50) DEFAULT '' ;
+
+   DECLARE c1 CURSOR FOR
+     SELECT c.fname, c.lname
+     FROM CUSTOMER c
+     WHERE c.fname = Fname and c.lname = Lname;
+
+
+   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+   OPEN c1;
+   read_loop: LOOP
+    FETCH c1 INTO NameFetch, LNameFetch;
+    IF done THEN
+    LEAVE read_loop;
+    END IF;
+
+
+
+      UPDATE CUSTOMER c SET credit_card = credit_card WHERE c.fname = NameFetch and c.lname = LNameFetch;
+
+    END LOOP;
+
+    CLOSE c1;
+
+END; //
+
+DELIMITER ;
+CALL FindName('Thor: Ragnarok','2017-11-03','Isaiah', 'Herrera','02:30:00',123456);
+CALL FindName('Thor: Ragnarok','2017-11-03','H', 'Herrera','02:30:00',123456);
