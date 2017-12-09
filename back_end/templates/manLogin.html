@@ -19,15 +19,9 @@
       evt.preventDefault();
       var data = {username : $("#username").val(), password : $("#password").val()};
       $.get('http://localhost:3000/credentials', data, function(req, res) {
-          console.log(req);
-          // console.log(res);
           if(req == "Success"){
-              console.log("YAYAY");
               $("#peasant").hide();
               $("#manager").show();
-              // var parent = document.getElementById("Momma");
-              // var child = document.getElementById("managerForm");
-              // parent.removeChild(child);
           }else{
             alert("Sorry. Username or Password is incorrect.");
           }
@@ -35,73 +29,45 @@
     })
   });
 
-  $(function(){
-    $('#typeSelector').on("change", function(evt){
-
-      evt.preventDefault();
-      console.log($('#typeSelector').val());
-      if($('#typeSelector').val() == "prod"){
-        $("#prodCoInsert").show();
-        $("#directorInsert").hide();
-        $("#actorInsert").hide();
-      }else if($('#typeSelector').val() == "director"){
-        $("#directorInsert").show();
-        $("#prodCoInsert").hide();
-        $("#actorInsert").hide();
-      }else{
-        $("#actorInsert").show();
-        $("#prodCoInsert").hide();
-        $("#directorInsert").hide();
-      }
-
-    })
-  });
-
-  $(function(){
-    $('#typeSelector2').on("change", function(evt){
-
-      evt.preventDefault();
-      console.log($('#typeSelector2').val());
-      if($('#typeSelector2').val() == "prod"){
-        $("#prodCoDel").show();
-        $("#directorDel").hide();
-        $("#actorDel").hide();
-      }else if($('#typeSelector2').val() == "director"){
-        $("#directorDel").show();
-        $("#prodCoDel").hide();
-        $("#actorDel").hide();
-      }else{
-        $("#actorDel").show();
-        $("#prodCoDel").hide();
-        $("#directorDel").hide();
-      }
-
-    })
-  });
-
   $(function GenerateMovies() {
     $.get('http://localhost:3000/getMovies', function(res) {
-      console.log(res)
       for (i = 0; i < res.length; i++){
         $("#reviewOpts").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
       }
     });
   });
-  // $(function(){
-  //   $('#insert').click(function(evt){
-  //
-  //     evt.preventDefault();
-  //     if($('#typeSelector2').val() == "director"){
-  //       var data = { dirfname : $("#dirname").val(), dirlname : $("#dirlname").val(), dirbio : $("#dirbio").val()}
-  //     }else if($('#typeSelector2').val() == "actor")
-  //       var data = { actfname : $("#actfname").val(), actlname : $("#actlname").val(), actbio : $("#actbio").val()}
-  //     else{
-  //       var data = { name : $("#name").val(), owner : $("#owner").val(), country : $("#country").val()}
-  //     }
-  //
-  //   console.log(data)
-  //   });
-  // });
+
+  $(function(){
+    $('#reviewOpts').click(function(evt){
+      evt.preventDefault();
+      var data = {movie: $('#reviewOpts').val()}
+      $.get('http://localhost:3000/retrieveReviews', data, function(res) {
+        $("#topper").empty();
+        $("#tablebody").empty();
+        $("#description").empty();
+        $("#topper").append("<th>ID: </th> <th>Review:</th>");
+        for (i = 0; i < res.length; i++){
+          $("#tablebody").append("<tr><td>" + res[i]['review_id'] + "</td> <td> " + res[i]['description'] + "</tr></td>")
+        }
+        $("#deletionDiv").show();
+      });
+    });
+  });
+
+  $(function(){
+    $('#delButton').click(function(evt){
+      evt.preventDefault();
+      var data = {id: $('#deleteId').val()}
+      $.get('http://localhost:3000/deleteReview', data, function(res) {
+        if(res.affectedRows == 1){
+          alert("Review was successfully deleted.");
+        }
+        else{
+          alert("Failed to delete review. No such review with id: " + data.id + " exists for this movie.");
+        }
+      });
+    });
+  });
 
   function openTab(evt, tab) {
     // Declare all variables
@@ -170,13 +136,32 @@
               </form>
             </div>
             <div class="wrapper" id="manager" hidden>
-              <p>Manager view</p>
+              <h2>Admin View: Select Movie to Audit Reviews For</h2>
               <div class="input-append">
-                <select class="form-control" id="reviewOpts">
-                  <!-- <option value="prod">Production Company</option>
-                  <option value="director">Director</option>
-                  <option value="actor">Actor/Actress</option> -->
-                </select>
+                <select class="form-control" id="reviewOpts"></select>
+                <!-- Table to put search results in -->
+     					 <div class="scrollable">
+     						 <div class="title_wrapper">
+     							 <h1 id='title1'></h1>
+     							 <div class="subtitle" style="display: none;">
+     								 <p id="sub1"></p>
+     							 </div>
+     							 <p id="description"></p>
+     						 </div>
+     							<table class="table" align= "left" id="table2">
+     								<thead>
+     									<tr id="topper">
+     									</tr>
+     								</thead>
+     								<tbody id ="tablebody">
+     								</tbody>
+     							</table>
+     						</div>
+              </div>
+              <div id="deletionDiv" hidden>
+                <label for="delete">ID of Review to Delete:</label>
+                <input class="form-control" type="number" id="deleteId" name="delete" required>
+                <button type="button" class="btn btn-primary" id="delButton">DELETE</button>
               </div>
             </div>
           </div>
