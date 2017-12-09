@@ -278,18 +278,8 @@ INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 3, 'D
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 3, '"Justice League" doesn’t have anyone with the witty way with a line Robert Downey Jr. brings to Ironman, or the swagger of Chris Hemsworth (Thor) to carry it. But Momoa’s bemused physicality has its own cockiness, Miller’s wide-eyed Flash innocence and Gadot’s commitment to earnest, brave and spoiling for a fight Diana put “The Avengers” on notice.', 3);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (3, 4, 'If you don’t like Saw, this isn’t going to change your mind – but it’s skillful, satisfying schlock and respectful of its fanbase. And the final death is a show-stopping coup de grace.', 3);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 4, 'There are a couple of impressive set pieces in “Jigsaw,” but the traps seem fairly rudimentary, and it’s up to the camera work to provide the needed jolts.', 2);
-<<<<<<< HEAD
-<<<<<<< HEAD
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (3, 5, 'This movie consists of a boring story line with an unnecessary Christmas theme. While some of the actors gave me hope of this movie being watchable, you will only feel dread as it drags on and on without any memorable scenes and a bronze lining of generic nonsensical comedy. Nothing but a seasonal money grab, huge waste of time.', 1);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 5, 'It’s by no means good, but there are moments of effective emotion and comedy that make up for some of the dumber jokes, and sheer charisma largely carries it along.', 1)
-=======
-INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 5, 'This movie consists of a boring story line with an unnecessary Christmas theme. While some of the actors gave me hope of this movie being watchable, you will only feel dread as it drags on and on without any memorable scenes and a bronze lining of generic nonsensical comedy. Nothing but a seasonal money grab, huge waste of time.', 1);
-INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 5, 'It’s by no means good, but there are moments of effective emotion and comedy that make up for some of the dumber jokes, and sheer charisma largely carries it along.', 1)
->>>>>>> e6141f0817bcc1648e8b0117d0dbdcfc57df4bb0
-=======
-INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 5, 'This movie consists of a boring story line with an unnecessary Christmas theme. While some of the actors gave me hope of this movie being watchable, you will only feel dread as it drags on and on without any memorable scenes and a bronze lining of generic nonsensical comedy. Nothing but a seasonal money grab, huge waste of time.', 1);
-INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 5, 'It’s by no means good, but there are moments of effective emotion and comedy that make up for some of the dumber jokes, and sheer charisma largely carries it along.', 1)
->>>>>>> 91c411206677e688434aa52801d2799a9bf4d271
 
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 1);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 2);
