@@ -29,6 +29,21 @@ router.get("/manLogin", function(req,res){
 router.get("/freshpotatoes", function(req,res){
   res.sendFile(path + "/freshpotatoes.png");
 });
+router.get("/thorragnarok", function(req,res){
+  res.sendFile(path + "/pictures/Thor_Ragnarok.jpg");
+});
+router.get("/daddyshome2", function(req,res){
+  res.sendFile(path + "/pictures/daddyshome2.jpg");
+});
+router.get("/melgibson", function(req,res){
+  res.sendFile(path + "/pictures/mel_gibson.jpg");
+});
+router.get("/jasonmomoa", function(req,res){
+  res.sendFile(path + "/pictures/Jason_Momoa.jpg");
+});
+router.get("/chrishemsworth", function(req,res){
+  res.sendFile(path + "/pictures/Chris_Hemsworth.jpg");
+});
 
 app.use("/", router);
 app.use('/node_modules',  express.static(__dirname + '/node_modules'));
@@ -39,30 +54,6 @@ app.listen(3000,function(){
     console.log('Node server running @ http://localhost:3000')
 });
 
-/*router.get('/request', function(req, res){
-  var con = mysql.createConnection({
-    host: "localhost",
-    user: "isaiah",
-    password: "PASSword",
-    database : 'md',
-
-});
-
-con.connect(function(err) {
-  if (err) throw err;
-  con.query("SELECT name FROM MOVIE", function (err, result) {
-    if (err){
-    	throw err;
-    }
-    else {
-    	console.log(result);
-    	res.send(result) //How to transfer this to app.js without it resulting in unidentified
-	   }
-  });
-  con.end();
-});
-});*/
-
 router.get('/credentials', function(req, res){
   var con = mysql.createConnection({
     host: "localhost",
@@ -72,11 +63,10 @@ router.get('/credentials', function(req, res){
 });
 
 con.connect(function(err) {
-  if (err) throw err;
-    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+  if (err) res.send("error");
   con.query("SELECT * FROM USER;",  function (err, result) {
     if (err){
-      throw err;
+      res.send("Failure");
   }
     else {
       // res.send(result); //How to transfer this to app.js without it resulting in unidentified
@@ -105,14 +95,13 @@ router.get('/postReview', function(req, res){
 });
 
 con.connect(function(err) {
-  if (err) throw err;
+  if (err) res.send("error");
     //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
   con.query("INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES ( 2, (SELECT movie_id FROM MOVIE WHERE MOVIE.name = \""+ req.query.movie +"\"), \'"+ req.query.review +"\', "+ req.query.rating +") ",  function (err, result) {
     if (err){
-      throw err;
+      res.send("error");
   }
     else {
-      console.log(result);
       res.send("Success"); //How to transfer this to app.js without it resulting in unidentified
 }
 });
@@ -131,7 +120,7 @@ con.end();
   });
 
   con.connect(function(err) {
-    if (err) throw err;
+    if (err) res.send("error");
     var quer = [];
     if (req.query.type == "movie"){
       quer.push("SELECT * FROM MOVIE WHERE NAME = " + JSON.stringify(req.query.name) + ";");
@@ -158,15 +147,13 @@ con.end();
     for (i = 0; i < quer.length; i++){
     con.query(quer[i], function (err, result) {
       if (err){
-        throw err;
+        res.send("error");
       }
       else {
         prev.push(result);
-        console.log(prev);
     }
     });
   }
-  console.log(prev);
     setTimeout(function(){ res.send(prev); }, 100);
     con.end();
 
@@ -182,14 +169,13 @@ router.get('/getMovies', function(req, res){
 });
 
 con.connect(function(err) {
-  if (err) throw err;
+  if (err) res.send("error");
     //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
   con.query("SELECT name FROM MOVIE;",  function (err, result) {
     if (err){
-      throw err;
+      res.send("error");
   }
     else {
-      console.log(result);
       res.send(result); //How to transfer this to app.js without it resulting in unidentified
 }
 });
@@ -208,15 +194,13 @@ console.log(req.query.movie)
 });
 
 con.connect(function(err) {
-  if (err) throw err;
-    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+  if (err) res.send("error");
   con.query("SELECT * FROM SHOW_TIME WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = "+ JSON.stringify(req.query.name) + ");",  function (err, result) {
     if (err){
-      throw err;
+      res.send("error");
   }
     else {
-      console.log(result);
-      res.send(result); //How to transfer this to app.js without it resulting in unidentified
+      res.send(result);
 }
 });
 con.end();
@@ -234,11 +218,11 @@ console.log(req.query.movie)
 });
 
 con.connect(function(err) {
-  if (err) throw err;
+  if (err) res.send("error");
     //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
   con.query("SELECT * FROM SHOW_TIME WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = "+ JSON.stringify(req.query.name) + ");",  function (err, result) {
     if (err){
-      throw err;
+      res.send("error");
   }
     else {
       console.log(result);

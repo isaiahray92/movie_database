@@ -18,7 +18,6 @@
         evt.preventDefault();
         var data = { name : $("#mySearch").val(), type : $("#typeSelector").val()
         }
-        console.log(data)
         $.get('http://localhost:3000/generalRequest', data, /*contentType = 'application/x-www-form-urlencoded; charset=UTF-8', dataType = 'json'*/  function(data) {
 						$("#title1").empty();
 						$(".subtitle").hide();
@@ -29,17 +28,16 @@
 						$("#topper2").empty();
 						$("#reviewbody").empty();
 						$("#rate").empty();
+						$("#pic").empty();
 								if($("#typeSelector").val() == "movie"){
-									console.log(data)
 									$("#title1").append(data[0][0]['name']);
 									$(".subtitle").show();
 									$("#sub1").append(data[0][0]['run_time'] + " minutes <span class=ghost>|</span>" + " Released: "+ data[0][0]['release_date'].substring(0,10) + " <span class=ghost>|</span> Directed By "+ data[3][0]['fname']+ " " + data[3][0]['lname']);
 									$("#description").append(data[2][0]['avg(rating)'] + "/5 Potatoes");
 									$("#topper").append("<th>Actors: </th>");
-									console.log("Daddy's Home 2".replace(/ /g, ''))
-									var picture = "/templates/pictures/" + data[0][0]['name'].replace(/ /g, '') + '.jpg'
-									console.log(picture)
-									$("#pic").append('<img src="' + picture +'" width="100" height="100">')
+									var picture = data[0][0]['name'].replace(/ |:|\'/g, '')
+
+									$("#pic").append('<img src="'+picture+'" width="150" height="250">')
 									for (i = 0; i < data[1].length; i++){
 										$("#tablebody").append("<tr><td>" + data[1][i]['fname'] + " " + data[1][i]['lname'] + "</tr></td>")
 									}
@@ -50,7 +48,6 @@
                 //$(".lead2").append(JSON.stringify(movies)); // show the list
 								}
 								else if ($("#typeSelector").val() == "director"){
-									console.log(data[0]);
 									$("#title1").append(data[0][0]['fname'] + " " + data[0][0]['lname']);
 									$("#description").append(data[0][0]['bio']);
 									$("#topper").append("<th>Has Directed:</th>");
@@ -59,10 +56,11 @@
 									}
 								}
 								else{
-									console.log(data[0]);
 									$("#title1").append(data[0][0]['fname'] + " " + data[0][0]['lname']);
 									$("#description").append(data[0][0]['bio']);
 									$("#rate").append('Actor Rated: ' + data[0][0]['rate'] + ' Potatoes');
+									var picture = (data[0][0]['fname'] + data[0][0]['lname']).replace(/ |:|\'/g, '')
+									$("#pic").append('<img src="'+picture+'" width="150" height="250">')
 									$("#topper").append("<th>Has Acted In:</th>");
 									for (i = 0; i < data[1].length; i++){
 										$("#tablebody").append("<tr><td>" + data[1][i]['name'] + "</tr></td>")
@@ -125,17 +123,17 @@
 					 <!-- Table to put search results in -->
 					 <div class="scrollable">
 						 <div style="width: 100%; overflow: hidden;">
-						 <div id='pic' style="width: 0px; float: left;">
+						 <div id='pic' style="width: 200px; float: left;">
 						 </div>
 
-						 <div class="title_wrapper" style="margin-left: 0px;">
-							 <h1 id='title1'></h1>
-							 <div class="subtitle" style="display: none;">
+						 <div class="title_wrapper" style="margin-left: 50px; margin_top: 50px;">
+							 <h1 id='title1' align="left"></h1>
+							 <div class="subtitle" style="display: none;" align="left">
 								 <p id="sub1"></p>
 							 </div>
-							 <p id="description"></p>
+							 <p id="description" align="left"></p>
 							 <br>
-							 <p id="rate"></p>
+							 <p id="rate" align="left"></p>
 						 </div>
 						 </div>
 							<table class="table" align= "left" id="table1">

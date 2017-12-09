@@ -15,7 +15,6 @@
 	<script type="text/javascript">
 		$(function GenerateMovies() {
 				$.get('http://localhost:3000/getMovies', function(res) {
-								console.log(res)
 								for (i = 0; i < res.length; i++){
 									$("#movieName").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
 								}
@@ -31,7 +30,6 @@
 				evt.preventDefault();
 				var data = { movie : $("#movieName").find(":selected").val(), rating : $("#stars input[type='radio']:checked").val(), review : $("#inputAddress").val()
 			}
-			console.log(data)
 				$.get('http://localhost:3000/postReview', data, function(res) {
                 if(res == 'Success'){
                   alert("Review Submitted!");

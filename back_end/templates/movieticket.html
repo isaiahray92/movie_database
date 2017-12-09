@@ -17,11 +17,9 @@
 			$('#subMov').click(function(evt){
 				evt.preventDefault();
 			var params = window.location.search.substring(1).split("&")
-			console.log(params[0].replace('%20', ' ').substring(6))
 			var data = { movie : params[0].replace('%20', ' ').substring(6), date: params[1].replace('%20', ' ').substring(5), time : params[2].replace('%20', ' ').substring(5),
 			fname : $("#fname").val(), lname : $("#lname").val(),
 			cc : $("#cardNum").val()};
-			console.log(data)
 			$.get('http://localhost:3000/BuyTicket', data, function(res) {
 							console.log(res)
 
