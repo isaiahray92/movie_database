@@ -332,15 +332,6 @@ INSERT INTO TICKET (movie_date, start_time, fname, lname, seat_num, row_num, mov
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 1);
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 2);
 
-
---Insert checks custormer matching first name last name
---If there is already a customer in there it sullectec there customer id
---FI the cuseter is not in there then the customer fist name last name
---Inset into ticket
--- the movie
--- movie (string), movie date (date), start time(time), fname(varchar), lname(varchar), credit_card number(int)
-
-
 DROP PROCEDURE IF EXISTS FindName;
 DELIMITER //
 CREATE PROCEDURE FindName(movie VARCHAR(50), movie_date DATE, Fname VARCHAR(50), Lname VARCHAR(50),start_time TIME, credit_card INT)
