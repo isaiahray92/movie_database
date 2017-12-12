@@ -160,6 +160,66 @@ con.end();
 });
 });
 
+router.get('/retrieveReviews', function(req, res){
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "isaiah",
+  password: "PASSword",
+  database : 'md',
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
+    // "SELECT name FROM MOVIE WHERE movie_id IN (SELECT movie_id FROM MOVIE_ACT WHERE act_id = (SELECT act_id FROM ACTOR WHERE FNAME = \'" + fname + "\' AND LNAME = \'" + lname + "\'));"
+  con.query("Drop VIEW IF EXISTS revToDelete;", function (err){
+    if(err){
+      throw err;
+    }
+  });
+  con.query("CREATE VIEW revToDelete as (select review_id, name, description from (review LEFT JOIN movie ON review.movie_id=movie.movie_id));", function (err){
+    if(err){
+      throw err;
+    }
+  });
+  con.query("SELECT * FROM revToDelete where name= " + JSON.stringify(req.query.movie) + ";", function (err, result) {
+    if (err){
+      throw err;
+  }
+    else {
+      res.send(result); //How to transfer this to app.js without it resulting in unidentified
+}
+});
+con.end();
+
+});
+});
+
+router.get('/deleteReview', function(req, res){
+  var con = mysql.createConnection({
+    host: "localhost",
+    user: "isaiah",
+    password: "PASSword",
+    database : 'md',
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  con.query("DELETE FROM REVIEW WHERE review_id=" + req.query.id + ";",  function (err, result) {
+    if (err){
+      throw err;
+  }
+    else {
+      res.send(result); //How to transfer this to app.js without it resulting in unidentified
+}
+});
+con.end();
+
+});
+});
+
+
+
 router.get('/getMovies', function(req, res){
   var con = mysql.createConnection({
     host: "localhost",

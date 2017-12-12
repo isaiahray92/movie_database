@@ -19,27 +19,76 @@
       evt.preventDefault();
       var data = {username : $("#username").val(), password : $("#password").val()};
       $.get('http://localhost:3000/credentials', data, function(req, res) {
-          console.log(req);
-          // console.log(res);
           if(req == "Success"){
-              console.log("YAYAY");
               $("#peasant").hide();
               $("#manager").show();
-              // var parent = document.getElementById("Momma");
-              // var child = document.getElementById("managerForm");
-              // parent.removeChild(child);
           }else{
             alert("Sorry. Username or Password is incorrect.");
           }
-
-
-
         });
-      // var data = { movie : $("#movieName").find(":selected").val(), rating : $("#stars input[type='radio']:checked").val(), review : $("#inputAddress").val()
-      console.log($("#username").val());
-
     })
   });
+
+  $(function GenerateMovies() {
+    $.get('http://localhost:3000/getMovies', function(res) {
+      for (i = 0; i < res.length; i++){
+        $("#reviewOpts").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
+      }
+    });
+  });
+
+  $(function(){
+    $('#reviewOpts').click(function(evt){
+      evt.preventDefault();
+      var data = {movie: $('#reviewOpts').val()}
+      $.get('http://localhost:3000/retrieveReviews', data, function(res) {
+        $("#topper").empty();
+        $("#tablebody").empty();
+        $("#description").empty();
+        $("#topper").append("<th>ID: </th> <th>Review:</th>");
+        for (i = 0; i < res.length; i++){
+          $("#tablebody").append("<tr><td>" + res[i]['review_id'] + "</td> <td> " + res[i]['description'] + "</tr></td>")
+        }
+        $("#deletionDiv").show();
+      });
+    });
+  });
+
+  $(function(){
+    $('#delButton').click(function(evt){
+      evt.preventDefault();
+      var data = {id: $('#deleteId').val()}
+      $.get('http://localhost:3000/deleteReview', data, function(res) {
+        if(res.affectedRows == 1){
+          alert("Review was successfully deleted.");
+        }
+        else{
+          alert("Failed to delete review. No such review with id: " + data.id + " exists for this movie.");
+        }
+      });
+    });
+  });
+
+  function openTab(evt, tab) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tab-pane");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tab).style.display = "block";
+    evt.currentTarget.className += " active";
+};
 
 </script>
 
@@ -78,20 +127,43 @@
             textarea.html-text-box {background-color:#ffffff;background-image:url(http://);background-repeat:no-repeat;background-attachment:fixed;border-width:1;border-style:solid;border-color:#cccccc;font-family:Arial;font-size:12pt;color:#000000;}
             input.html-text-box {background-color:#ffffff;font-family:Arial;font-size:12pt;color:#000000;}
             </style>
-
             <div class="wrapper" id="peasant">
               <form class="form-signin" id="managerForm">
                 <h2 class="form-signin-heading">Please login</h2>
-                <input type="text" class="form-control" id="username" placeholder="Email Address" required="" autofocus="" />
-                <br><br>
+                <input type="text" class="form-control" id="username" placeholder="Username" required="" autofocus="" />
                 <input type="password" class="form-control" id="password" placeholder="Password" required=""/>
                 <br><br>
                 <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
               </form>
             </div>
-
             <div class="wrapper" id="manager" hidden>
-              <p>Here is the div where we will eventually put control shenanigans.</p>
+              <h2>Admin View: Select Movie to Audit Reviews For</h2>
+              <div class="input-append">
+                <select class="form-control" id="reviewOpts"></select>
+                <!-- Table to put search results in -->
+     					 <div class="scrollable">
+     						 <div class="title_wrapper">
+     							 <h1 id='title1'></h1>
+     							 <div class="subtitle" style="display: none;">
+     								 <p id="sub1"></p>
+     							 </div>
+     							 <p id="description"></p>
+     						 </div>
+     							<table class="table" align= "left" id="table2">
+     								<thead>
+     									<tr id="topper">
+     									</tr>
+     								</thead>
+     								<tbody id ="tablebody">
+     								</tbody>
+     							</table>
+     						</div>
+              </div>
+              <div id="deletionDiv" hidden>
+                <label for="delete">ID of Review to Delete:</label>
+                <input class="form-control" type="number" id="deleteId" name="delete" required>
+                <button type="button" class="btn btn-primary" id="delButton">DELETE</button>
+              </div>
             </div>
           </div>
 
