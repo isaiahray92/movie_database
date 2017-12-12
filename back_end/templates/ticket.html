@@ -16,7 +16,7 @@
     $(function GenerateMovies() {
 				$.get('http://localhost:3000/getMovies', function(res) {
 								for (i = 0; i < res.length; i++){
-									$("#movieList").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
+									$("#movieList").append("<option value=\"" + res[i]['movie_id'] + "\">" + res[i]['name'] + "</option>");
 								}
             });
     });
@@ -28,7 +28,7 @@
 			$('#subMov').click(function(evt){
 					$("#DayTimeSelect").empty();
 					$("#BuyMovie").show();
-					var data = { name : $("#movieList").find(":selected").val() }
+					var data = { movie_id : $("#movieList").find(":selected").val() }
 					$.get('http://localhost:3000/getShowtimes', data, function(res) {
 									for (i = 0; i < res.length; i++){
 										$("#DayTimeSelect").append("<option value=\"" + res[i]['show_date'].substring(0,10) + res[i]['show_time'] + "\">" + res[i]['show_date'].substring(0,10) + " at " + res[i]['show_time'] + "</option>");

@@ -171,7 +171,7 @@ router.get('/getMovies', function(req, res){
 con.connect(function(err) {
   if (err) res.send("error");
     //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
-  con.query("SELECT name FROM MOVIE;",  function (err, result) {
+  con.query("SELECT * FROM MOVIE;",  function (err, result) {
     if (err){
       res.send("error");
   }
@@ -195,7 +195,7 @@ console.log(req.query.movie)
 
 con.connect(function(err) {
   if (err) res.send("error");
-  con.query("SELECT * FROM SHOW_TIME WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = "+ JSON.stringify(req.query.name) + ");",  function (err, result) {
+  con.query("SELECT * FROM SHOW_TIME WHERE movie_id = "+req.query.movie_id+";",  function (err, result) {
     if (err){
       res.send("error");
   }
@@ -219,10 +219,12 @@ console.log(req.query.movie)
 
 con.connect(function(err) {
   if (err) res.send("error");
-    //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
-  con.query("SELECT * FROM SHOW_TIME WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE name = "+ JSON.stringify(req.query.name) + ");",  function (err, result) {
+  console.log(req.query);
+  con.query("CALL FindName("+ JSON.stringify(req.query.movie)+", "+JSON.stringify(req.query.date)+ ", "+ JSON.stringify(req.query.fname) + ", "+ JSON.stringify(req.query.lname)+ ", "+ JSON.stringify(req.query.time) + ", "+ req.query.cc +");",  function (err, result) {
+  con.query("SELECT * FROM TICKET WHERE ")
     if (err){
-      res.send("error");
+      throw err;
+      //res.send("error");
   }
     else {
       console.log(result);

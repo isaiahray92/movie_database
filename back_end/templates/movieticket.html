@@ -19,11 +19,13 @@
 			var params = window.location.search.substring(1).split("&")
 			var data = { movie : params[0].replace('%20', ' ').substring(6), date: params[1].replace('%20', ' ').substring(5), time : params[2].replace('%20', ' ').substring(5),
 			fname : $("#fname").val(), lname : $("#lname").val(),
-			cc : $("#cardNum").val()};
+			cc : $("#CardNum").val() };
+			console.log(data);
+			console.log($("#cardNum").val())
 			$.get('http://localhost:3000/BuyTicket', data, function(res) {
-							console.log(res)
+					console.log(res)
 
-					});
+			});
     });
 		});
 
@@ -58,10 +60,10 @@
 
 
 
-          <div class="inner-cover">
 
 
-          <div class="inner cover" id="insertTab">
+					<div class="scrollable">
+          <div class="inner-cover" id="insertTab">
 
             <h2 align ="center" class="cover-heading">Billing Information</h2>
             <br><br>
@@ -113,13 +115,14 @@
             <br><br>
             <button type="button" class="btn btn-primary" id="subMov"> Submit</button>
           </div>
+				</div>
 
           <div class="mastfoot">
-            <div class="inner">
+            <!--<div class="inner">
               <p>Fresh potatoes
 
               </p>
-            </div>
+            </div> -->
           </div>
 
         </div>

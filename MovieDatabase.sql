@@ -279,10 +279,10 @@ INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 3, '"
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (3, 4, 'If you don’t like Saw, this isn’t going to change your mind – but it’s skillful, satisfying schlock and respectful of its fanbase. And the final death is a show-stopping coup de grace.', 3);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 4, 'There are a couple of impressive set pieces in “Jigsaw,” but the traps seem fairly rudimentary, and it’s up to the camera work to provide the needed jolts.', 2);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (3, 5, 'This movie consists of a boring story line with an unnecessary Christmas theme. While some of the actors gave me hope of this movie being watchable, you will only feel dread as it drags on and on without any memorable scenes and a bronze lining of generic nonsensical comedy. Nothing but a seasonal money grab, huge waste of time.', 1);
-INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 5, 'It’s by no means good, but there are moments of effective emotion and comedy that make up for some of the dumber jokes, and sheer charisma largely carries it along.', 1)
+INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 5, 'It’s by no means good, but there are moments of effective emotion and comedy that make up for some of the dumber jokes, and sheer charisma largely carries it along.', 1);
 
-INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 1);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 2);
+INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 1);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 3);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (2, 4);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (2, 5);
@@ -343,17 +343,10 @@ INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 1);
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 2);
 
 
---Insert checks customer matching first name last name
---If there is already a customer in there it sullectec there customer id
---FI the cuseter is not in there then the customer fist name last name
---Inset into ticket
--- the movie
--- movie (string), movie date (date), start time(time), fname(varchar), lname(varchar), credit_card number(int)
-
 
 DROP PROCEDURE IF EXISTS FindName;
 DELIMITER //
-CREATE PROCEDURE FindName(movie VARCHAR(50), movie_date DATE, Fname VARCHAR(50), Lname VARCHAR(50),start_time TIME, credit_card INT)
+CREATE PROCEDURE FindName(imovie VARCHAR(50), imovie_date DATE, ifname VARCHAR(50), ilname VARCHAR(50), istart_time TIME, icredit_card INT)
 
 BEGIN
   DECLARE done INT DEFAULT FALSE;
@@ -363,7 +356,7 @@ BEGIN
    DECLARE c1 CURSOR FOR
      SELECT c.fname, c.lname
      FROM CUSTOMER c
-     WHERE c.fname = Fname and c.lname = Lname;
+     WHERE c.fname = ifname and c.lname = ilname;
 
 
    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
@@ -375,16 +368,15 @@ BEGIN
     LEAVE read_loop;
     END IF;
 
-
-
-      UPDATE CUSTOMER c SET credit_card = credit_card WHERE c.fname = NameFetch and c.lname = LNameFetch;
+      UPDATE CUSTOMER c SET credit_card = icredit_card WHERE c.fname = NameFetch and c.lname = LNameFetch;
 
     END LOOP;
 
     CLOSE c1;
 
+    INSERT INTO CUSTOMER (fname, lname, credit_card) SELECT ifname, ilname, icredit_card as tmp WHERE NOT EXISTS (select fname, lname FROM CUSTOMER WHERE fname = ifname AND lname = ilname); 
+    INSERT INTO TICKET (movie_date, start_time, fname, lname, movie, theater) VALUES (imovie_date, istart_time, ifname, ilname, imovie, 1);
+
 END; //
 
 DELIMITER ;
-CALL FindName('Thor: Ragnarok','2017-11-03','Isaiah', 'Herrera','02:30:00',123456);
-CALL FindName('Thor: Ragnarok','2017-11-03','H', 'Herrera','02:30:00',123456);
