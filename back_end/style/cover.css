@@ -73,6 +73,7 @@ body {
 .masthead-nav > li + li {
   margin-left: 20px;
 }
+
 .masthead-nav > li > a {
   padding-right: 0;
   padding-left: 0;
@@ -234,6 +235,7 @@ body {
 .bigDiv {
   position: relative;
   top:20px;
+
 }
 
 .form-group {
@@ -249,3 +251,7 @@ body {
 .input-append {
   color: black;
 }
+.container-fluid{
+background-color: #4d4d4d;
+}
+

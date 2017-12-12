@@ -18,7 +18,6 @@
         evt.preventDefault();
         var data = { name : $("#mySearch").val(), type : $("#typeSelector").val()
         }
-        console.log(data)
         $.get('http://localhost:3000/generalRequest', data, /*contentType = 'application/x-www-form-urlencoded; charset=UTF-8', dataType = 'json'*/  function(data) {
 						$("#title1").empty();
 						$(".subtitle").hide();
@@ -26,20 +25,29 @@
 						$("#description").empty();
 						$("#topper").empty();
 						$("#tablebody").empty();
+						$("#topper2").empty();
+						$("#reviewbody").empty();
+						$("#rate").empty();
+						$("#pic").empty();
 								if($("#typeSelector").val() == "movie"){
-									console.log(data)
 									$("#title1").append(data[0][0]['name']);
 									$(".subtitle").show();
 									$("#sub1").append(data[0][0]['run_time'] + " minutes <span class=ghost>|</span>" + " Released: "+ data[0][0]['release_date'].substring(0,10) + " <span class=ghost>|</span> Directed By "+ data[3][0]['fname']+ " " + data[3][0]['lname']);
 									$("#description").append(data[2][0]['avg(rating)'] + "/5 Potatoes");
 									$("#topper").append("<th>Actors: </th>");
+									var picture = data[0][0]['name'].replace(/ |:|\'/g, '')
+
+									$("#pic").append('<img src="'+picture+'" width="150" height="250">')
 									for (i = 0; i < data[1].length; i++){
 										$("#tablebody").append("<tr><td>" + data[1][i]['fname'] + " " + data[1][i]['lname'] + "</tr></td>")
+									}
+									$("#topper2").append("<th>Rating: </th> <th>Review:</th>");
+									for (i = 0; i < data[4].length; i++){
+										$("#reviewbody").append("<tr><td>" + data[4][i]['rating'] + "</td> <td> " + data[4][i]['description'] + "</tr></td>")
 									}
                 //$(".lead2").append(JSON.stringify(movies)); // show the list
 								}
 								else if ($("#typeSelector").val() == "director"){
-									console.log(data[0]);
 									$("#title1").append(data[0][0]['fname'] + " " + data[0][0]['lname']);
 									$("#description").append(data[0][0]['bio']);
 									$("#topper").append("<th>Has Directed:</th>");
@@ -48,9 +56,11 @@
 									}
 								}
 								else{
-									console.log(data[0]);
 									$("#title1").append(data[0][0]['fname'] + " " + data[0][0]['lname']);
 									$("#description").append(data[0][0]['bio']);
+									$("#rate").append('Actor Rated: ' + data[0][0]['rate'] + ' Potatoes');
+									var picture = (data[0][0]['fname'] + data[0][0]['lname']).replace(/ |:|\'/g, '')
+									$("#pic").append('<img src="'+picture+'" width="150" height="250">')
 									$("#topper").append("<th>Has Acted In:</th>");
 									for (i = 0; i < data[1].length; i++){
 										$("#tablebody").append("<tr><td>" + data[1][i]['name'] + "</tr></td>")
@@ -70,100 +80,90 @@
 
         <div class="cover-container">
 
-          <div class="masthead clearfix">
+          <div class="masthead-clearfix">
 
             <div class="inner">
 
 							<nav class="navbar navbar-inverse">
 								<a href="#" class="navbar-left"><img src="/freshpotatoes" width="100" height="100"></a>
 							<div class="container-fluid">
-								<div class="navbar-header">
-									<a class="navbar-brand" href="/">Home</a>
-								</div>
 
 								<ul class="nav navbar-nav">
-									<!-- <li class="active"><a href="/">Home</a></li> -->
+									<li class="active"><a href="/">Home</a></li>
 									<li><a href="/review">Leave a Review</a></li>
 									<li><a href="/ticket">Buy a Ticket</a></li>
+									<li><a href="/manLogin">Manager Login</a></li>
 									<!-- <li><a href="#">Page 3</a></li> -->
 								</ul>
 							</div>
 						</nav>
             </div>
           </div>
+        <div style="width:690px;height:650px;overflow:auto;padding:5px;">
 
 		<div class="bigDiv">
-          <div class="inner cover">
-            <h3 class="cover-heading">Search Potatoes Database</h2>
-
+          <div class="inner-cover">
+            <h2 class="cover-heading">Search Potatoes Database</h2>
+            	<br>
 						<form>
 						 <!--Search Bar with drop down menu-->
 						 <div class="input-append">
 							 <input type="text" id="mySearch" class="form-control" placeholder="Search" required/>
+							 <br>
 							 <select class="form-control" id="typeSelector">
 							  <option value="movie">Movie</option>
 							   <option value="director">Director</option>
 							  <option value="actor">Actor/Actress</option>
 							</select>
-							<button id="searchBt" class="btn btn-lg btn-default">Search</button>
+							<br>
+							<button type="button" class="btn btn-primary" id="searchBt">Search</button>
 						 </div>
 					 </form>
 
 					 <!-- Table to put search results in -->
 					 <div class="scrollable">
-						 <div class="title_wrapper">
-							 <h1 id='title1'></h1>
-							 <div class="subtitle" style="display: none;">
+						 <div style="width: 100%; overflow: hidden;">
+						 <div id='pic' style="width: 200px; float: left;">
+						 </div>
+
+						 <div class="title_wrapper" style="margin-left: 50px; margin_top: 50px;">
+							 <h1 id='title1' align="left"></h1>
+							 <div class="subtitle" style="display: none;" align="left">
 								 <p id="sub1"></p>
 							 </div>
-							 <p id="description"></p>
+							 <p id="description" align="left"></p>
+							 <br>
+							 <p id="rate" align="left"></p>
+						 </div>
 						 </div>
 							<table class="table" align= "left" id="table1">
 						    <thead>
 						      <tr id="topper">
-						        <!--<th>Movie</th>
-						        <th>Rating</th>
-						        <th>Description</th>
-										<th>Director</th> -->
 						      </tr>
 						    </thead>
 						    <tbody id ="tablebody">
-						      <!--<tr>
-						        <td>Thor: Ragnarok</td>
-						        <td>4.7</td>
-						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
-										<td>"Example #1"</td>
-						      </tr>
-									<tr>
-						        <td>Thor: Ragnarok</td>
-						        <td>4.7</td>
-						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
-										<td>"Example #1"</td>
-						      </tr>
-									<tr>
-						        <td>Thor: Ragnarok</td>
-						        <td>4.7</td>
-						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
-										<td>"Example #1"</td>
-						      </tr>
-									<tr>
-						        <td>Thor: Ragnarok</td>
-						        <td>4.7</td>
-						        <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</td>
-										<td>"Example #1"</td>
-						      </tr> -->
 						    </tbody>
 						  </table>
+							<br>
+							<table class="table" align= "left" id="table2">
+								<thead>
+									<tr id="topper2">
+
+									</tr>
+								</thead>
+								<tbody id ="reviewbody">
+								</tbody>
+							</table>
 						</div>
           </div>
 					</div>
-
+		</div>
 
 
           <div class="mastfoot">
 
             <div class="inner">
-              <p><!--Fresh potatoes-->
+              <p><!-- Fresh potatoes -->
 
               </p>
             </div>

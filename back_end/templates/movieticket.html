@@ -12,25 +12,24 @@
 	<link href="../style/cover.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
-  <!-- <script type="text/javascript">
-    $(function(){
-			$('#searchBt').click(function(evt){
+	<script type="text/javascript">
+    $(function() {
+			$('#subMov').click(function(evt){
 				evt.preventDefault();
-				// arr.push(mySearch.value);
-				$(".lead2").append(mySearch.value);
+			var params = window.location.search.substring(1).split("&")
+			var data = { movie : params[0].replace('%20', ' ').substring(6), date: params[1].replace('%20', ' ').substring(5), time : params[2].replace('%20', ' ').substring(5),
+			fname : $("#fname").val(), lname : $("#lname").val(),
+			cc : $("#CardNum").val() };
+			console.log(data);
+			console.log($("#cardNum").val())
+			$.get('http://localhost:3000/BuyTicket', data, function(res) {
+					console.log(res)
+
 			});
-
-      // $('#btnSignIn').click(function(evt){
-      //   evt.preventDefault();
-      //   $.get('http://localhost:3000/request', function(movies) {
-      //           $( ".lead2" ).empty();
-      //           $(".lead2").append(JSON.stringify(movies)); // show the list
-      //
-      //       });
-      // });
     });
+		});
 
-  </script> -->
+  </script>
 </head>
 <body>
 	<div class="site-wrapper">
@@ -42,30 +41,42 @@
           <div class="masthead clearfix">
 
             <div class="inner">
-            	<div class="topnav" id="myTopnav">
-								<h1 class="masthead-brand">Fresh Potatoes</h1>
-                <a href="#" class="navbar-left"><img src="/freshpotatoes" width="100" height="100"></a>
-					       <!--<a href="#home">
-					         <img src="http://localhost:3000/freshpotatoes.png" width="80" height="80" alt="Chec">
+							<nav class="navbar navbar-inverse">
+								<a href="#" class="navbar-left"><img src="/freshpotatoes" width="100" height="100"></a>
+							<div class="container-fluid">
+								<div class="navbar-header">
+								</div>
 
-					       </a> -->
-
-				      </div>
+								<ul class="nav navbar-nav">
+									<li><a href="/">Home</a></li>
+                  <li><a href="/review">Leave a Review</a></li>
+                  <li><a href="/ticket">Buy a Ticket</a></li>
+                  <li><a href="/manLogin">Manager Login</a></li>
+								</ul>
+							</div>
+						</nav>
             </div>
           </div>
 
 
-          <div class="inner cover">
+
+
+
+					<div class="scrollable">
+          <div class="inner-cover" id="insertTab">
+
             <h2 align ="center" class="cover-heading">Billing Information</h2>
             <br><br>
-          <form action="/action_page.html" align = "left">
-            <label for="NameCard">Name on the Card</label>
-            <br>
-            <input type="text" id="NameCard" class="form-control" placeholder="Input Name" required/>
-            <br><br>
+          <form align = "left">
+						<label for="Fname">First Name</label><br>
+						<input type="text" id="fname" class="form-control" placeholder="Input First Name" required/>
+						<br>
+						<label for="Lname">Last Name</label>
+            <input type="text" id="lname" class="form-control" placeholder="Input Last Name" required/>
+						<br>
             <label for="cardNum">Card Number</label>
-            <input type="number" name="CardNum" class="form-control" placeholder="xxxx-xxxx-xxxx-1234" />
-            <br><br>
+            <input type="number" id="CardNum" class="form-control" placeholder="xxxx-xxxx-xxxx-1234" />
+            <br>
            <div class="CVV">
                 <label for="cvv">CVV</label>
                 <input type="text" class="form-control" id="cvv" placeholder="xxx">
@@ -95,19 +106,23 @@
                     <option value="21"> 2021</option>
                     <option value="22"> 2022</option>
                 </select>
-            </div>
+
+						</div>
+            <br>
+            <label for="RewardNum">Reward Number (If applicable)</label>
+            <input type="number" id="RewardNum" class="form-control" placeholder="1234" />
+          </form>
             <br><br>
             <button type="button" class="btn btn-primary" id="subMov"> Submit</button>
-          </form> 
-
           </div>
+				</div>
 
           <div class="mastfoot">
-            <div class="inner">
+            <!--<div class="inner">
               <p>Fresh potatoes
 
               </p>
-            </div>
+            </div> -->
           </div>
 
         </div>

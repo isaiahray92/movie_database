@@ -27,6 +27,7 @@ CREATE TABLE ACTOR
   fname VARCHAR(100),
   lname VARCHAR(100),
   bio VARCHAR(1000),
+  rate INT,
   PRIMARY KEY(act_id)
 );
 
@@ -91,6 +92,7 @@ CREATE TABLE SHOW_TIME
   movie_id INT NOT NULL,
   show_time TIME NOT NULL,
   theater_num INT NOT NULL,
+  show_date DATE NOT NULL,
   PRIMARY KEY(movie_id, show_time, theater_num),
   FOREIGN KEY (movie_id) REFERENCES MOVIE(movie_id),
   FOREIGN KEY (theater_num) REFERENCES THEATER_ROOM(theater_num)
@@ -172,6 +174,15 @@ CREATE TABLE TICKET_SALES
   FOREIGN KEY(ticket_num) REFERENCES TICKET(ticket_num)
 );
 
+CREATE TABLE USER
+(
+  User_name VARCHAR(30),
+  Password VARCHAR(30),
+  PRIMARY KEY(User_name)
+);
+
+INSERT INTO USER (User_name, Password) VALUES ('USERNAME','PASSWORD');
+
 INSERT INTO SEAT (seat_num, row_num) VALUES (1,1);
 INSERT INTO SEAT (seat_num, row_num) VALUES (2,1);
 
@@ -185,21 +196,33 @@ INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('Matthew', 'Gerber', 3);
 INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('Cole', 'Polychronis', 4);
 INSERT INTO CUSTOMER (fname, lname, reward) VALUES ('Taylor', 'Page', 5);
 
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Chris', 'Hemsworth', 'Born in Melbourne, Australia, to Leonie (van Os), a teacher of English, and Craig Hemsworth, a social-services counselor.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Tom', 'Hiddleston', 'Thomas William Hiddleston, was born in Westminister, London, to Enlgish-born Diana Patricia (Servaes) and Scottish born James Norman Hiddleston.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Cate', 'Blanchett', 'Cate Blanchett was born on May 14, 1969 in Melbourne, Victoria, Australia, to June (Gamble), an Australian teacher and property developer and Robert Dewett Blanchett Jr., an American advertising Executive.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Will', 'Ferrell', 'John William Ferrell was born in Irving, California to Betty Kay (Overman), a teacher, and Roy Lee Ferrell Jr., a musician.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Mark', 'Whalberg', 'American actor Mark Whalberg is one of a handful of respectfed entertainers who successfully made the transition from Teen Pop Idol to acclaimed actor.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Mel', 'Gibson', 'Mel Columcillle Gerard Gibson was born January 3, 1956 in Peekskill, New York, USA, as a sixth of eleven children of Hutton Gibson, a railroad brakeman and Anne Patricia (Riley) Gibson (who died in December of 1990.)');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Ben', 'Affleck', 'American actor and filmmaker Benjamin Géza Affleck-Boldt was born on August 15, 1972 in Berkeley, California, and was raised in Cambridge, Massachusetts.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Gal', 'Gadot', 'Gal Gadot is an Israeli actress, singer, martial artist, and model.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Jason', 'Momoa', 'Joseph Jason Namakaeha Momoa was born on August 1, 1979 in Honolulu, Hawaii. He is the son of Coni (Lemke), a photographer, and Joseph Momoa, a painter.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Matt', 'Passmore', 'Matt Passmore was born on December 24, 1973 in Wynnum-Manly, Queensland, Australia as Matthew Passmore. He is an actor and producer, known for The Glades (2010), Jigsaw (2017) and McLeod\'s Daughters (2001).');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Tobin', 'Bell', 'Tobin Bell is an American actor with a career in film, television and theater spanning three decades. He was born in Queens, New York and raised in Weymouth, Mass.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Callum', 'Rennie', 'Callum Keith Rennie was born in England, raised in Alberta, Canada and came late to acting - he discovered theatre in Edmonton at the age of 25.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Mila', 'Kunis', 'Mila Kunis was born Milena Markovna Kunis to a Jewish family in Chernivtsi, Ukraine, USSR (now independent Ukraine).');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Kristen', 'Bell', 'Kristen Anne Bell (born 1980) is an American actress and singer.');
-INSERT INTO ACTOR (fname, lname, bio) VALUES ('Kathryn', 'Hahn', 'Kathryn Hahn was born in Westchester, Illinois, but her family then moved to Cleveland, Ohio, where she spent most of her time growing up.');
+
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Chris', 'Hemsworth', 'Born in Melbourne, Australia, to Leonie (van Os), a teacher of English, and Craig Hemsworth, a social-services counselor.', 0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Tom', 'Hiddleston', 'Thomas William Hiddleston, was born in Westminister, London, to Enlgish-born Diana Patricia (Servaes) and Scottish born James Norman Hiddleston.', 0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Cate', 'Blanchett', 'Cate Blanchett was born on May 14, 1969 in Melbourne, Victoria, Australia, to June (Gamble), an Australian teacher and property developer and Robert Dewett Blanchett Jr., an American advertising Executive.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Will', 'Ferrell', 'John William Ferrell was born in Irving, California to Betty Kay (Overman), a teacher, and Roy Lee Ferrell Jr., a musician.', 0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mark', 'Whalberg', 'American actor Mark Whalberg is one of a handful of respectfed entertainers who successfully made the transition from Teen Pop Idol to acclaimed actor.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mel', 'Gibson', 'Mel Columcillle Gerard Gibson was born January 3, 1956 in Peekskill, New York, USA, as a sixth of eleven children of Hutton Gibson, a railroad brakeman and Anne Patricia (Riley) Gibson (who died in December of 1990.)',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Ben', 'Affleck', 'American actor and filmmaker Benjamin Géza Affleck-Boldt was born on August 15, 1972 in Berkeley, California, and was raised in Cambridge, Massachusetts.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Gal', 'Gadot', 'Gal Gadot is an Israeli actress, singer, martial artist, and model.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Jason', 'Momoa', 'Joseph Jason Namakaeha Momoa was born on August 1, 1979 in Honolulu, Hawaii. He is the son of Coni (Lemke), a photographer, and Joseph Momoa, a painter.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Matt', 'Passmore', 'Matt Passmore was born on December 24, 1973 in Wynnum-Manly, Queensland, Australia as Matthew Passmore. He is an actor and producer, known for The Glades (2010), Jigsaw (2017) and McLeod\'s Daughters (2001).',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Tobin', 'Bell', 'Tobin Bell is an American actor with a career in film, television and theater spanning three decades. He was born in Queens, New York and raised in Weymouth, Mass.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Callum', 'Rennie', 'Callum Keith Rennie was born in England, raised in Alberta, Canada and came late to acting - he discovered theatre in Edmonton at the age of 25.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Mila', 'Kunis', 'Mila Kunis was born Milena Markovna Kunis to a Jewish family in Chernivtsi, Ukraine, USSR (now independent Ukraine).',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Kristen', 'Bell', 'Kristen Anne Bell (born 1980) is an American actress and singer.',0);
+INSERT INTO ACTOR (fname, lname, bio, rate) VALUES ('Kathryn', 'Hahn', 'Kathryn Hahn was born in Westchester, Illinois, but her family then moved to Cleveland, Ohio, where she spent most of her time growing up.',0);
+
+
+
+delimiter //
+CREATE TRIGGER updateRating BEFORE INSERT ON REVIEW
+  FOR EACH ROW
+  BEGIN
+  UPDATE ACTOR SET rate = rate + NEW.rating WHERE act_id IN (SELECT act_id FROM MOVIE_ACT WHERE movie_id = (SELECT movie_id FROM MOVIE WHERE movie_id = NEW.movie_id));
+  END;
+//
+delimiter ;
 
 INSERT INTO DIRECTOR (fname, lname, bio) VALUES ('Taika', 'Waititi', 'Taiki Waititi, also known as Taika Cohen, hails from Raukokore region of the East Coast, and is of Te-Whanau-a-Apanui (father) and Jewish (mother) descent.');
 INSERT INTO DIRECTOR (fname, lname, bio) VALUES ('Sean', 'Anders', 'Sean Anders is a writer and director, known for Horrible Bosses 2 (2014) and Daddys Home (2015).');
@@ -240,26 +263,26 @@ INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Justice
 INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('Jigsaw', '2017-10-27', 92, 4);
 INSERT INTO MOVIE (name, release_date, run_time, production_CO) VALUES ('A Bad Mom\'s Christmas', '2017-11-01', 104, 5);
 
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '02:30:00', 1);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (1, '06:00:00', 1);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (2, '12:30:00', 2);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (3, '09:15:00', 3);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (4, '11:45:00', 2);
-INSERT INTO SHOW_TIME (movie_id, show_time, theater_num) VALUES (5, '05:50:00', 3);
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (1, '02:30:00', 1, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (1, '06:00:00', 1, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (2, '12:30:00', 2, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (3, '09:15:00', 3, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (4, '11:45:00', 2, '2017-12-25');
+INSERT INTO SHOW_TIME (movie_id, show_time, theater_num, show_date) VALUES (5, '05:50:00', 3, '2017-12-25');
 
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 1, 'Ragnarok is a neon-infused fantasy of what superhero films could look like. There are gigantic monsters and beautiful women; zombie armies and a big spooky dog; an evil witch and Jeff Goldblum, but this isn\'t just a wacky movie made for the sake of wackiness. Ragnarok is the child of confident filmmaking and understanding of what the Thor franchise could have always been.', 5);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 1, 'I had the opportunity to witness this goofy nonsense with my Father, who was a big fan of the Thor comics in his youth, and what he saw on screen destroyed everything he, and later, I, would come to enjoy about the titular character, who has been reduced to a comedic buffoon.', 1);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (3, 2, 'Daddy\'s Home 2 had the potential of being comedic and fun like how the first film was. But like most comedy sequels, this one was a dud with most of the laughs already shown in the trailers. While the rest of the 90 or so minutes being completely a drag and boring. The first film was a lot of fun with the concept of step dad vs. dad with Will Ferrell vs. Mark Wahlberg. They do make a perfect comedic duo.', 3);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 2, 'Daddy\'s Home 2 is silly and over-the-top, and much like the first film isn\'t short of a few eye-rollers and missteps; there may not be a dance- off, but they don\'t shy away from that level of comicality. This sequel contains more slapstick humor, but in turn that also means more laughs.', 4);
-INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (4, 3, 'Don\'t listen to the Marvel fans. This movie is great, tons of fun and LOTS of action. The characters are great and the story is fast-paced. The Flash steals the show and Aquaman is no longer a joke. Batman and Wonder Woman are always great and Superman.... Well, you\'ll just have to see it for your self. You can\'t ask for a better time at the movies!', 5);
-INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (5, 3, '"Justice League" doesn’t have anyone with the witty way with a line Robert Downey Jr. brings to Ironman, or the swagger of Chris Hemsworth (Thor) to carry it. But Momoa’s bemused physicality has its own cockiness, Miller’s wide-eyed Flash innocence and Gadot’s commitment to earnest, brave and spoiling for a fight Diana put “The Avengers” on notice.', 3);
+INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 3, 'Don\'t listen to the Marvel fans. This movie is great, tons of fun and LOTS of action. The characters are great and the story is fast-paced. The Flash steals the show and Aquaman is no longer a joke. Batman and Wonder Woman are always great and Superman.... Well, you\'ll just have to see it for your self. You can\'t ask for a better time at the movies!', 5);
+INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (1, 3, '"Justice League" doesn’t have anyone with the witty way with a line Robert Downey Jr. brings to Ironman, or the swagger of Chris Hemsworth (Thor) to carry it. But Momoa’s bemused physicality has its own cockiness, Miller’s wide-eyed Flash innocence and Gadot’s commitment to earnest, brave and spoiling for a fight Diana put “The Avengers” on notice.', 3);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (3, 4, 'If you don’t like Saw, this isn’t going to change your mind – but it’s skillful, satisfying schlock and respectful of its fanbase. And the final death is a show-stopping coup de grace.', 3);
 INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 4, 'There are a couple of impressive set pieces in “Jigsaw,” but the traps seem fairly rudimentary, and it’s up to the camera work to provide the needed jolts.', 2);
-INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (6, 5, 'This movie consists of a boring story line with an unnecessary Christmas theme. While some of the actors gave me hope of this movie being watchable, you will only feel dread as it drags on and on without any memorable scenes and a bronze lining of generic nonsensical comedy. Nothing but a seasonal money grab, huge waste of time.', 1);
-INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (5, 5, 'It’s by no means good, but there are moments of effective emotion and comedy that make up for some of the dumber jokes, and sheer charisma largely carries it along.', 1)
+INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (3, 5, 'This movie consists of a boring story line with an unnecessary Christmas theme. While some of the actors gave me hope of this movie being watchable, you will only feel dread as it drags on and on without any memorable scenes and a bronze lining of generic nonsensical comedy. Nothing but a seasonal money grab, huge waste of time.', 1);
+INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES (2, 5, 'It’s by no means good, but there are moments of effective emotion and comedy that make up for some of the dumber jokes, and sheer charisma largely carries it along.', 1);
 
-INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 1);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 2);
+INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 1);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (1, 3);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (2, 4);
 INSERT INTO MOVIE_ACT (movie_id, act_id) VALUES (2, 5);
@@ -318,3 +341,42 @@ INSERT INTO TICKET (movie_date, start_time, fname, lname, seat_num, row_num, mov
 
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 1);
 INSERT INTO TICKET_SALES (pool_id, ticket_num) VALUES (1, 2);
+
+
+
+DROP PROCEDURE IF EXISTS FindName;
+DELIMITER //
+CREATE PROCEDURE FindName(imovie VARCHAR(50), imovie_date DATE, ifname VARCHAR(50), ilname VARCHAR(50), istart_time TIME, icredit_card INT)
+
+BEGIN
+  DECLARE done INT DEFAULT FALSE;
+  DECLARE NameFetch VARCHAR(50) DEFAULT '' ;
+  DECLARE LNameFetch VARCHAR(50) DEFAULT '' ;
+
+   DECLARE c1 CURSOR FOR
+     SELECT c.fname, c.lname
+     FROM CUSTOMER c
+     WHERE c.fname = ifname and c.lname = ilname;
+
+
+   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+   OPEN c1;
+   read_loop: LOOP
+    FETCH c1 INTO NameFetch, LNameFetch;
+    IF done THEN
+    LEAVE read_loop;
+    END IF;
+
+      UPDATE CUSTOMER c SET credit_card = icredit_card WHERE c.fname = NameFetch and c.lname = LNameFetch;
+
+    END LOOP;
+
+    CLOSE c1;
+
+    INSERT INTO CUSTOMER (fname, lname, credit_card) SELECT ifname, ilname, icredit_card as tmp WHERE NOT EXISTS (select fname, lname FROM CUSTOMER WHERE fname = ifname AND lname = ilname); 
+    INSERT INTO TICKET (movie_date, start_time, fname, lname, movie, theater) VALUES (imovie_date, istart_time, ifname, ilname, imovie, 1);
+
+END; //
+
+DELIMITER ;

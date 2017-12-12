@@ -13,13 +13,23 @@
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript">
+		$(function GenerateMovies() {
+				$.get('http://localhost:3000/getMovies', function(res) {
+								for (i = 0; i < res.length; i++){
+									$("#movieName").append("<option value=\"" + res[i]['name'] + "\">" + res[i]['name'] + "</option>");
+								}
+						});
+		});
+
+	</script>
+
+	<script type="text/javascript">
     $(function(){
       $('#submitBt').click(function(evt){
 
 				evt.preventDefault();
 				var data = { movie : $("#movieName").find(":selected").val(), rating : $("#stars input[type='radio']:checked").val(), review : $("#inputAddress").val()
 			}
-			console.log(data)
 				$.get('http://localhost:3000/postReview', data, function(res) {
                 if(res == 'Success'){
                   alert("Review Submitted!");
@@ -50,13 +60,12 @@
               <nav class="navbar navbar-inverse">
 								<a href="#" class="navbar-left"><img src="/freshpotatoes" width="100" height="100"></a>
 							 <div class="container-fluid">
-								 <div class="navbar-header">
-									 <a class="navbar-brand" href="/review">Leave a Review</a>
-								 </div>
+
 								 <ul class="nav navbar-nav">
-									 <!-- <li class="active"><a href="/">Home</a></li> -->
 									 <li><a href="/">Home</a></li>
+									 <li class="active"><a href="/">Leave a Review</a></li>
 									 <li><a href="/ticket">Buy a Ticket</a></li>
+									 <li><a href="/manLogin">Manager Login</a></li>
 									 <!-- <li><a href="#">Page 3</a></li> -->
 								 </ul>
 							 </div>
@@ -67,7 +76,7 @@
           <div class="inner-cover">
 						<form id='formThing'>
 								<div class="review-grouph">
-										<label>Your Review</label>
+										<h2>Your Review</h2>
 									</form>
 									<br>
 									<style type="text/css">
@@ -75,15 +84,13 @@
 									input.html-text-box {background-color:#ffffff;font-family:Arial;font-size:12pt;color:#000000;}
 									</style>
 									<form id='formThing'><textarea name="comments" cols="80" rows="5" class="html-text-box" id="inputAddress">Please write your review here...</textarea>
-
+			<br><br>
 
               <div class="input-append">
  							 <select class="form-control" id='movieName'>
- 							  <option value="1">Thor: Ragnarok</option>
- 							   <option value="2">Daddy's Home 2</option>
  							</select>
  						 </div>
-
+<br><br>
 						 <div class="rating" id="stars">
  						 <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
  					 <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
@@ -91,9 +98,9 @@
  			 <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
  		 <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
 	 </div>
-
+	 <br><br>
               <div>
- 							        <button id="submitBt" class="btn btn-lg btn-default">Submit Review</button>
+ 				<button type="button" class="btn btn-primary" id="submitBt"> Submit Review </button>
               </div>
             </form>
 						<p id='returnMessage'>
