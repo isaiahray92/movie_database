@@ -281,7 +281,6 @@ con.connect(function(err) {
   if (err) res.send("error");
   console.log(req.query);
   con.query("CALL FindName("+ JSON.stringify(req.query.movie)+", "+JSON.stringify(req.query.date)+ ", "+ JSON.stringify(req.query.fname) + ", "+ JSON.stringify(req.query.lname)+ ", "+ JSON.stringify(req.query.time) + ", "+ req.query.cc +");",  function (err, result) {
-  con.query("SELECT * FROM TICKET WHERE ")
     if (err){
       throw err;
       //res.send("error");

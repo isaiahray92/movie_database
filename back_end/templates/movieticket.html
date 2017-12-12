@@ -24,7 +24,8 @@
 			console.log($("#cardNum").val())
 			$.get('http://localhost:3000/BuyTicket', data, function(res) {
 					console.log(res)
-
+					alert("Ticket Purchased, email confirmation will be sent");
+					window.location.replace("/");
 			});
     });
 		});
