@@ -97,7 +97,7 @@ router.get('/postReview', function(req, res){
 con.connect(function(err) {
   if (err) res.send("error");
     //quer = "INSERT * FROM "+ req.query.type +" WHERE NAME = \"" + req.query.name + "\""
-  con.query("INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES ( 2, (SELECT movie_id FROM MOVIE WHERE MOVIE.name = \""+ req.query.movie +"\"), \'"+ req.query.review +"\', "+ req.query.rating +") ",  function (err, result) {
+  con.query("INSERT INTO REVIEW (reviewer_id, movie_id, description, rating) VALUES ( 2, (SELECT movie_id FROM MOVIE WHERE MOVIE.name = "+ JSON.stringify(req.query.movie) +"), \'"+ req.query.review +"\', "+ req.query.rating +") ",  function (err, result) {
     if (err){
       res.send("error");
   }
